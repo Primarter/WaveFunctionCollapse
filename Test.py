@@ -25,7 +25,8 @@ for obj in objects:
     tuple_points: List[Tuple] = [point[:] for point in points] # converts blender Vector to tuple to avoid using freeze
     tuple_normals: List[Tuple] = [normal[:] for normal in normals]
 
-    face_profiles_geometry: Tuple[List] = ([], [], [], [], [], [])
+    face_profiles_geometry: Tuple[List] = ([], [], [], [])
+    vertical_face_profiles_geometry: Tuple[List] = ([], [])
 
     face_profiles_names: Tuple[str] = ('', '', '', '', '', '')
 
@@ -44,14 +45,13 @@ for obj in objects:
             face_profiles_geometry[3].append(point_2d_proj)
         if (p[2] == -1): # nz
             point_2d_proj = (p[0], -p[1], tuple_normals[i][0], -tuple_normals[i][1])
-            face_profiles_geometry[4].append(point_2d_proj)
+            vertical_face_profiles_geometry[0].append(point_2d_proj)
         if (p[2] == +1): # pz
             point_2d_proj = (p[0], p[1], tuple_normals[i][0], tuple_normals[i][1])
-            face_profiles_geometry[5].append(point_2d_proj)
+            vertical_face_profiles_geometry[1].append(point_2d_proj)
 
     for i, fpg in enumerate(face_profiles_geometry):
         for (kfp, name) in known_face_profiles:
-            # todo: add check if vertical, vertical profiles might need to be treated separately as to simplify code
             if (Counter(kfp) == Counter(fpg)):
                 face_profiles_names[i] = name
                 break
