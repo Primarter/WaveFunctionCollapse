@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import List, Tuple, Dict
 from collections import Counter
 from mathutils import Vector
+from functools import partial
 
 '''
 hash(bpy.context.object.location.xyz.freeze())
@@ -15,7 +16,9 @@ objects = bpy.data.collections['Prototypes'].all_objects
 
 file = open(PATH, 'w')
 
-known_face_profiles: List[Tuple[Tuple, str]] = [([], '-1')]
+file.write('### DEBUG ###\n\n')
+
+known_face_profiles: List[Tuple[List[Tuple[float, float, float, float]], str]] = [([], '-1')]
 known_vertical_face_profiles: List[Tuple[Tuple, str]] = [([], '-1')]
 
 for obj in objects:
@@ -91,6 +94,16 @@ for obj in objects:
                 known_vertical_face_profiles.append((rot_2, name + '2'))
                 known_vertical_face_profiles.append((rot_3, name + '3'))
 
+# known_face_profiles = list(map(lambda fp: (list(map(lambda geo: list(map(partial(round, ndigits=5), geo)), fp[0])), fp[1]), known_face_profiles))
+known_face_profiles = [([tuple(round(val, 5) for val in point) for point in geo], name) for geo, name in known_face_profiles]
+
+# for geo, name in known_face_profiles:
+#     for point in geo:
+#         for val in point:
+#             val = round(val, 5)
+
+file.write('\n### DATA ###\n\n')
+
 for fp, name in known_face_profiles:
     file.write(str(fp) + ' ' + name + '\n')
 
@@ -102,7 +115,7 @@ for fp, name in known_vertical_face_profiles:
 as a rule for placement, overlapping geometry shouldn't be authorized
 I need to find a way to enforce this. One way could be to add a prefix to signify that only air should be used next to this one
 basically if there is a face formed by the geometry on this profile, nothing can go next to that profile
-or when building everything, making sure there are no faces on the edges
+or when building everything, making sure there are no faces on the edges but this would limit variety and make everything end on a half step
 this can be added later on
 '''
 
