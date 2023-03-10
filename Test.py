@@ -1,8 +1,10 @@
 import bpy
+from mathutils import Vector
 from pathlib import Path
 from typing import List, Tuple, Dict
 from collections import Counter
-from mathutils import Vector
+from math import atan2, pi
+from enum import Enum
 from functools import partial
 
 '''
@@ -18,10 +20,85 @@ file = open(PATH, 'w')
 
 file.write('### DEBUG ###\n\n')
 
-known_face_profiles: List[Tuple[List[Tuple[float, float, float, float]], str]] = [([], '-1')]
-known_vertical_face_profiles: List[Tuple[Tuple, str]] = [([], '-1')]
+print('#############\n### DEBUG ###\n#############\n')
+
+class Orientation(Enum):
+    NORTH = 1
+    NORTHEAST = 2
+    EAST = 3
+    SOUTHEAST = 4
+    SOUTH = 5
+    SOUTHWEST = 6
+    WEST = 7
+    NORTHWEST = 8
+    NONE = 9
+
+known_face_profiles: List[Tuple[List[Tuple], Orientation, str]] = [([], Orientation.NONE, '-1')]
+known_vertical_face_profiles: List[Tuple[List[Tuple], Orientation, str]] = [([], Orientation.NONE, '-1')]
+
+profile_name = 0
+vertical_profile_name = 0
+
+def get_orientation(fpg):
+    average_normal = (0, 0)
+    if len(fpg) == 0:
+        return (-1, -1)
+    print('Points:\n')
+    for point in fpg:
+        print(str(point) + '\n')
+        average_normal = (average_normal[0] + point[2], average_normal[1] + point[3])
+    average_normal = (average_normal[0]/len(fpg), average_normal[1]/len(fpg))
+    print(average_normal)
+    print(atan2(average_normal[1], average_normal[0])/pi)
+    print('\n')
+    ori_idx = int(atan2(average_normal[1], average_normal[0]) * 8 / pi)
+    if ori_idx < 0: ori_idx += 8
+    return Orientation(ori_idx + 1)
+
+
+def flip_orientation(ori: Orientation):
+    match ori:
+        case Orientation.NORTHEAST:
+            return Orientation.NORTHWEST
+        case Orientation.NORTHWEST:
+            return Orientation.NORTHEAST
+        case Orientation.EAST:
+            return Orientation.WEST
+        case Orientation.WEST:
+            return Orientation.EAST
+        case Orientation.SOUTHEAST:
+            return Orientation.SOUTHWEST
+        case Orientation.SOUTHWEST:
+            return Orientation.SOUTHEAST
+    return ori
+
+def rot_orientation(ori: Orientation, rot_factor: int):
+    if ori == Orientation.NONE:
+        return Orientation.NONE
+    for i in range(rot_factor):
+        match ori:
+            case Orientation.NORTH:
+                ori = Orientation.NORTHEAST
+            case Orientation.NORTHEAST:
+                ori = Orientation.EAST
+            case Orientation.EAST:
+                ori = Orientation.SOUTHEAST
+            case Orientation.SOUTHEAST:
+                ori = Orientation.SOUTH
+            case Orientation.SOUTH:
+                ori = Orientation.SOUTHWEST
+            case Orientation.SOUTHWEST:
+                ori = Orientation.WEST
+            case Orientation.WEST:
+                ori = Orientation.NORTHWEST
+            case Orientation.NORTHWEST:
+                ori = Orientation.NORTH
+    return ori
+
 
 for obj in objects:
+
+    file.write(obj.name + '\n')
 
     points = [v.co[:] for v in obj.data.vertices]
     normals = [v.normal[:] for v in obj.data.vertices]
@@ -61,54 +138,65 @@ for obj in objects:
             vertical_face_profiles_geometry[1].append(point_2d_proj)
 
     for i, fpg in enumerate(face_profiles_geometry):
-        for (kfp, name) in known_face_profiles:
-            if (Counter(kfp) == Counter(fpg)):
+        if len(fpg) == 0:
+            face_profiles_names[i] = '-1'
+            continue
+        fpg_ori = get_orientation(fpg)
+        fpg = [(x, y) for (x, y, nx, ny) in fpg] # discarding normals as we now have orientation
+        for (kfp, ori, name) in known_face_profiles:
+            if (Counter(kfp) == Counter(fpg) and ori == fpg_ori):
                 face_profiles_names[i] = name
                 break
         else:
-            flipped_fpg = [(-x, y, -nx, ny) for (x, y, nx, ny) in fpg]
-            if Counter(fpg) == Counter(flipped_fpg):
-                name = str(len(known_face_profiles)) + 's'
-                known_face_profiles.append((fpg, name))
+            flipped_fpg = [(-x, y) for (x, y) in fpg]
+            if Counter(fpg) == Counter(flipped_fpg) and fpg_ori == flip_orientation(fpg_ori):
+                name = str(profile_name) + 's'
+                known_face_profiles.append((fpg, fpg_ori, name))
+                file.write('new profile found: ' + name + '\n')
             else:
-                name = str(len(known_face_profiles))
-                known_face_profiles.append((fpg, name))
+                name = str(profile_name)
+                known_face_profiles.append((fpg, fpg_ori, name))
+                file.write('new profile found: ' + name + '\n')
                 name += 'f'
-                known_face_profiles.append((flipped_fpg, name))
+                known_face_profiles.append((flipped_fpg, flip_orientation(fpg_ori), name))
+                file.write('new profile found: ' + name + '\n')
+            profile_name += 1
 
     for i, fpg in enumerate(vertical_face_profiles_geometry):
-        for (kfp, name) in known_vertical_face_profiles:
-            if (Counter(kfp) == Counter(fpg)):
+        if len(fpg) == 0:
+            face_profiles_names[i] = '-1'
+            continue
+        fpg_ori = get_orientation(fpg)
+        fpg = [(x, y) for (x, y, nx, ny) in fpg] # discarding normals as we now have orientation
+        for (kfp, ori, name) in known_vertical_face_profiles:
+            if (Counter(kfp) == Counter(fpg) and ori == fpg_ori):
                 face_profiles_names[i] = name
                 break
         else:
-            rot_1 = [(-x, y, -nx, ny) for (x, y, nx, ny) in fpg]
-            rot_2 = [(-x, -y, -nx, -ny) for (x, y, nx, ny) in fpg]
-            rot_3 = [(x, -y, nx, -ny) for (x, y, nx, ny) in fpg]
-            name = 'v' + str(len(known_vertical_face_profiles)) + '_'
-            if (Counter(fpg) == Counter(rot_1) and Counter(fpg) == Counter(rot_2) and Counter(fpg) == Counter(rot_3)):
-                known_vertical_face_profiles.append((fpg, name + 'i'))
+            rot_1 = [(-x, y) for (x, y) in fpg]
+            rot_2 = [(-x, -y) for (x, y) in fpg]
+            rot_3 = [(x, -y) for (x, y) in fpg]
+            name = 'v' + str(vertical_profile_name) + '_'
+            if Counter(fpg) == Counter(rot_1) and Counter(fpg) == Counter(rot_2) and Counter(fpg) == Counter(rot_3):
+                known_vertical_face_profiles.append((fpg, Orientation.NONE, name + 'i'))
             else:
-                known_vertical_face_profiles.append((fpg, name + '0'))
-                known_vertical_face_profiles.append((rot_1, name + '1'))
-                known_vertical_face_profiles.append((rot_2, name + '2'))
-                known_vertical_face_profiles.append((rot_3, name + '3'))
+                known_vertical_face_profiles.append((fpg, fpg_ori, name + '0'))
+                known_vertical_face_profiles.append((rot_1, rot_orientation(fpg_ori, 2), name + '1'))
+                known_vertical_face_profiles.append((rot_2, rot_orientation(fpg_ori, 4), name + '2'))
+                known_vertical_face_profiles.append((rot_3, rot_orientation(fpg_ori, 6), name + '3'))
+            vertical_profile_name += 1
 
 # known_face_profiles = list(map(lambda fp: (list(map(lambda geo: list(map(partial(round, ndigits=5), geo)), fp[0])), fp[1]), known_face_profiles))
-known_face_profiles = [([tuple(round(val, 5) for val in point) for point in geo], name) for geo, name in known_face_profiles]
-
-# for geo, name in known_face_profiles:
-#     for point in geo:
-#         for val in point:
-#             val = round(val, 5)
+known_face_profiles = [([tuple(round(val, 5) for val in point) for point in geo], ori, name) for geo, ori, name in known_face_profiles]
+known_vertical_face_profiles = [([tuple(round(val, 5) for val in point) for point in geo], ori, name) for geo, ori, name in known_vertical_face_profiles]
 
 file.write('\n### DATA ###\n\n')
 
-for fp, name in known_face_profiles:
-    file.write(str(fp) + ' ' + name + '\n')
+for fp, ori, name in known_face_profiles:
+    file.write(str(fp) + ' ' + str(ori) + ' ' + name + '\n')
 
-for fp, name in known_vertical_face_profiles:
-    file.write(str(fp) + ' ' + name + '\n')
+for fp, ori, name in known_vertical_face_profiles:
+    file.write(str(fp) + ' ' + str(ori) + ' ' + name + '\n')
 
 
 '''
