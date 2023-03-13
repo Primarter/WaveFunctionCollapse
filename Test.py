@@ -13,6 +13,14 @@ PATH = Path('./test.txt')
 
 objects = bpy.data.collections['Prototypes'].all_objects
 
+# Tuple indices for neighbour association
+NX = 0
+PX = 1
+NY = 2
+PY = 3
+NZ = 4
+PZ = 5
+
 file = open(PATH, 'w')
 
 file.write('### DEBUG ###\n\n')
@@ -53,11 +61,12 @@ class Prototype:
         self.potential_neighbours: Tuple[List[Tuple[int, int]]] = ([], [], [], [], [], [])
 
     def get_potential_neighbours(self, prototype_list: List[Prototype]):
-        for i, fp_name in enumerate(self.face_profile_names):
-            if i == 4:
+        for i, fp in enumerate(self.face_profiles):
+            if i == NZ:
                 for proto in prototype_list:
-                    proto.face_profile_names[5]
-                    pass
+                    if proto.face_profiles[PZ].id == fp.id:
+                        self.potential_neighbours[NZ].append((proto.id, fp.rotation))
+            ## TODO: other face profiles
 
 class Orientation(Enum):
     EAST = 0
