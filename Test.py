@@ -14,10 +14,10 @@ PATH = Path('./test.txt')
 objects = bpy.data.collections['Prototypes'].all_objects
 
 # Tuple indices for neighbour association
-NX = 0
-PX = 1
-NY = 2
-PY = 3
+PX = 0
+PY = 1
+NX = 2
+NY = 3
 NZ = 4
 PZ = 5
 
@@ -54,7 +54,7 @@ class FaceProfile:
 class Prototype:
     prototype_count = 0
 
-    def __init__(self, face_profiles: FaceProfile):
+    def __init__(self, face_profiles: Tuple[FaceProfile]):
         self.id = Prototype.prototype_count
         Prototype.prototype_count += 1
         self.face_profiles: Tuple[FaceProfile] = face_profiles
@@ -66,7 +66,28 @@ class Prototype:
                 for proto in prototype_list:
                     if proto.face_profiles[PZ].id == fp.id:
                         self.potential_neighbours[NZ].append((proto.id, fp.rotation))
-            ## TODO: other face profiles
+            elif i == PZ:
+                for proto in prototype_list:
+                    if proto.face_profiles[NZ].id == fp.id:
+                        self.potential_neighbours[PZ].append((proto.id, fp.rotation))
+            else:
+                for proto in prototype_list:
+                    for other, j in zip(proto.face_profiles, range(4)):
+                        if fp.id == other.id and (not fp.flipping or fp.flipped != other.flipped): # TODO: DEBUG THIS:
+                            '''Python: Traceback (most recent call last):
+                            File "C:\Users\alecb\Github Workplace\WaveFunctionCollapse\WFCScripting.blend\Test.py", line 254, in <module>
+                            File "C:\Users\alecb\Github Workplace\WaveFunctionCollapse\WFCScripting.blend\Test.py", line 76, in get_potential_neighbours
+                            AttributeError: 'str' object has no attribute 'id'
+                            '''
+                            self.potential_neighbours[j].append((proto.id, (i - j) % 4 + 2))
+
+# in order to make faces face each other regardless of where they are
+# associate an orientation to each face profile as an offset from 0 on the unit circle * PI/2
+# add the rotation of the already placed block to its face profile's rotation
+# the difference of this and the other block's face profile's rotation is the rotation to give to the other block
+# then flip the block (add 2 to the rotation) and place it
+# this setup allows for a shortcut: add the stored rotation value to the placed block's rotation
+# and use that as the to-be-placed block's rotation
 
 class Orientation(Enum):
     EAST = 0
@@ -84,7 +105,7 @@ known_vertical_face_profiles: List[Tuple[List[Tuple], Orientation, str]] = [([],
 
 profile_id = 0
 
-prototypes: List[Prototype]
+prototypes: List[Prototype] = []
 
 def get_orientation(fpg):
     average_normal = (0, 0)
@@ -156,19 +177,19 @@ for obj in objects:
         if (p[0] == -1): # nx
             projNormals = Vector((-n[1], n[2], 0)).normalized()[:2]
             point_2d_proj = (-p[1], p[2], *projNormals)
-            face_profiles_geometry[0].append(point_2d_proj)
+            face_profiles_geometry[NX].append(point_2d_proj)
         if (p[0] == +1): # px
             projNormals = Vector((n[1], n[2], 0)).normalized()[:2]
             point_2d_proj = (p[1], p[2], *projNormals)
-            face_profiles_geometry[1].append(point_2d_proj)
+            face_profiles_geometry[PX].append(point_2d_proj)
         if (p[1] == -1): # ny
             projNormals = Vector((n[0], n[2], 0)).normalized()[:2]
             point_2d_proj = (p[0], p[2], *projNormals)
-            face_profiles_geometry[2].append(point_2d_proj)
+            face_profiles_geometry[NY].append(point_2d_proj)
         if (p[1] == +1): # py
             projNormals = Vector((-n[0], n[2], 0)).normalized()[:2]
             point_2d_proj = (-p[0], p[2], *projNormals)
-            face_profiles_geometry[3].append(point_2d_proj)
+            face_profiles_geometry[PY].append(point_2d_proj)
         if (p[2] == -1): # nz
             projNormals = Vector((n[0], -n[1], 0)).normalized()[:2]
             point_2d_proj = (p[0], -p[1], *projNormals)
@@ -232,6 +253,10 @@ for obj in objects:
                 known_vertical_face_profiles.append((rot_3, rot_3_ori, FaceProfile(profile_id, True, True, 3)))
             profile_id += 1
     file.write('\n')
+    prototypes.append(Prototype(tuple(obj_face_profiles)))
+    # for proto in prototypes: print(proto)
+    # for proto in prototypes:
+    #     proto.get_potential_neighbours(prototypes)
 
 
 file.write('\n### DATA ###\n\n')
