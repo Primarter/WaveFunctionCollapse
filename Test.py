@@ -28,8 +28,6 @@ file.write('### DEBUG ###\n\n')
 print('#############\n### DEBUG ###\n#############\n')
 
 class FaceProfile:
-    face_profile_count = 0
-
     def __init__(self, uid: int, vertical: bool = False, rotating: bool = False, rotation: int = 0) -> None:
         self.id = uid
         self.vertical = vertical
@@ -54,9 +52,10 @@ class FaceProfile:
 class Prototype:
     prototype_count = 0
 
-    def __init__(self, face_profiles: Tuple[FaceProfile]):
+    def __init__(self, name: str, face_profiles: Tuple[FaceProfile]):
         self.id = Prototype.prototype_count
         Prototype.prototype_count += 1
+        self.name = name
         self.face_profiles: Tuple[FaceProfile] = face_profiles
         self.potential_neighbours: Tuple[List[Tuple[int, int]]] = ([], [], [], [], [], [])
 
@@ -72,14 +71,10 @@ class Prototype:
                         self.potential_neighbours[PZ].append((proto.id, fp.rotation))
             else:
                 for proto in prototype_list:
-                    for other, j in zip(proto.face_profiles, range(4)):
-                        if fp.id == other.id and (not fp.flipping or fp.flipped != other.flipped): # TODO: DEBUG THIS:
-                            '''Python: Traceback (most recent call last):
-                            File "C:\Users\alecb\Github Workplace\WaveFunctionCollapse\WFCScripting.blend\Test.py", line 254, in <module>
-                            File "C:\Users\alecb\Github Workplace\WaveFunctionCollapse\WFCScripting.blend\Test.py", line 76, in get_potential_neighbours
-                            AttributeError: 'str' object has no attribute 'id'
-                            '''
-                            self.potential_neighbours[j].append((proto.id, (i - j) % 4 + 2))
+                    for j, other in enumerate(proto.face_profiles):
+                        if (other.vertical): continue
+                        if fp.id == other.id and (not fp.flipping or fp.flipped != other.flipped):
+                            self.potential_neighbours[i].append((proto.id, (i - j + 2) % 4))
 
 # in order to make faces face each other regardless of where they are
 # associate an orientation to each face profile as an offset from 0 on the unit circle * PI/2
@@ -227,7 +222,7 @@ for obj in objects:
     # Create/Associate vertical face profiles
     for i, fpg in enumerate(vertical_face_profiles_geometry):
         if len(fpg) == 0:
-            obj_face_profiles[i] = '-1'
+            obj_face_profiles[i] = FaceProfile(-1, True)
             continue
         fpg_ori = get_orientation(fpg)
         fpg = [(x, y) for (x, y, nx, ny) in fpg] # discarding normals as we now have orientation
@@ -253,11 +248,10 @@ for obj in objects:
                 known_vertical_face_profiles.append((rot_3, rot_3_ori, FaceProfile(profile_id, True, True, 3)))
             profile_id += 1
     file.write('\n')
-    prototypes.append(Prototype(tuple(obj_face_profiles)))
-    # for proto in prototypes: print(proto)
-    # for proto in prototypes:
-    #     proto.get_potential_neighbours(prototypes)
+    prototypes.append(Prototype(obj.name, tuple(obj_face_profiles)))
 
+for proto in prototypes:
+    proto.get_potential_neighbours(prototypes)
 
 file.write('\n### DATA ###\n\n')
 
@@ -269,6 +263,14 @@ file.write('\n')
 for fp, ori, ofp in known_vertical_face_profiles:
     file.write(str(fp) + ' ' + str(ori) + ' ' + str(ofp) + '\n')
 
+file.write('\n')
+
+for proto in prototypes:
+    file.write(proto.name + '\n')
+    for (fp, pn) in zip(proto.face_profiles, proto.potential_neighbours):
+        file.write(str(fp) + '\n')
+        file.write(str(pn) + '\n')
+    file.write('\n')
 
 '''
 as a rule for placement, overlapping geometry shouldn't be authorized
@@ -277,7 +279,5 @@ basically if there is a face formed by the geometry on this profile, nothing can
 or when building everything, making sure there are no faces on the edges but this would limit variety and make everything end on a half step
 this can be added later on
 '''
-
-    # file.write(str(vertices_face_profiles) + '\n')
 
 file.close()
