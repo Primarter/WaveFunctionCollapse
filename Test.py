@@ -3,6 +3,7 @@ import bpy
 from mathutils import Vector
 from copy import copy
 from pathlib import Path
+import json
 from typing import List, Tuple, Dict
 from collections import Counter
 from math import atan2, pi
@@ -10,6 +11,12 @@ from enum import Enum
 # from functools import partial
 
 PATH = Path('./test.txt')
+
+file = open(PATH, 'w')
+
+file.write('### DEBUG ###\n\n')
+
+print('#############\n### DEBUG ###\n#############\n')
 
 objects = bpy.data.collections['Prototypes'].all_objects
 
@@ -20,12 +27,6 @@ NX = 2
 NY = 3
 NZ = 4
 PZ = 5
-
-file = open(PATH, 'w')
-
-file.write('### DEBUG ###\n\n')
-
-print('#############\n### DEBUG ###\n#############\n')
 
 class FaceProfile:
     def __init__(self, uid: int, vertical: bool = False, rotating: bool = False, rotation: int = 0) -> None:
@@ -100,7 +101,9 @@ known_vertical_face_profiles: List[Tuple[List[Tuple], Orientation, str]] = [([],
 
 profile_id = 0
 
-prototypes: List[Prototype] = []
+prototypes: List[Prototype] = [
+    Prototype("-1", (FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1)))
+] # first prototype is empty
 
 def get_orientation(fpg):
     average_normal = (0, 0)
@@ -271,6 +274,9 @@ for proto in prototypes:
         file.write(str(fp) + '\n')
         file.write(str(pn) + '\n')
     file.write('\n')
+
+with open("data.json", "w") as json_file:
+    json.dump(list(map(lambda c: c.__dict__, prototypes)), json_file)
 
 '''
 as a rule for placement, overlapping geometry shouldn't be authorized
