@@ -276,7 +276,10 @@ for proto in prototypes:
     file.write('\n')
 
 with open("data.json", "w") as json_file:
-    json.dump(list(map(lambda c: c.__dict__, prototypes)), json_file)
+    for p in prototypes:
+        p.face_profiles = tuple(fp.__dict__ for fp in p.face_profiles)
+    data = [p.__dict__ for p in prototypes]
+    json.dump(data, json_file, indent=2)
 
 '''
 as a rule for placement, overlapping geometry shouldn't be authorized
