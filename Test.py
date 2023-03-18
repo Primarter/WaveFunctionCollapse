@@ -1,6 +1,7 @@
 from __future__ import annotations
 import bpy
 from mathutils import Vector
+from dataclasses import dataclass
 from copy import copy
 from pathlib import Path
 import json
@@ -28,6 +29,11 @@ NY = 3
 NZ = 4
 PZ = 5
 
+@dataclass
+class Neighbour:
+    id: int = 0
+    rotation: int = 0
+
 class FaceProfile:
     def __init__(self, uid: int, vertical: bool = False, rotating: bool = False, rotation: int = 0) -> None:
         self.id = uid
@@ -36,6 +42,7 @@ class FaceProfile:
         self.flipping = rotating
         self.rotation = rotation
         self.flipped = bool(rotation)
+        self.potential_neighbours: List[Neighbour] = []
 
     def __str__(self) -> str:
         name = str(self.id)
@@ -58,24 +65,23 @@ class Prototype:
         Prototype.prototype_count += 1
         self.name = name
         self.face_profiles: Tuple[FaceProfile] = face_profiles
-        self.potential_neighbours: Tuple[List[Tuple[int, int]]] = ([], [], [], [], [], [])
 
     def get_potential_neighbours(self, prototype_list: List[Prototype]):
         for i, fp in enumerate(self.face_profiles):
             if i == NZ:
                 for proto in prototype_list:
                     if proto.face_profiles[PZ].id == fp.id:
-                        self.potential_neighbours[NZ].append((proto.id, fp.rotation))
+                        fp.potential_neighbours.append(Neighbour(proto.id, fp.rotation))
             elif i == PZ:
                 for proto in prototype_list:
                     if proto.face_profiles[NZ].id == fp.id:
-                        self.potential_neighbours[PZ].append((proto.id, fp.rotation))
+                        fp.potential_neighbours.append(Neighbour(proto.id, fp.rotation))
             else:
                 for proto in prototype_list:
                     for j, other in enumerate(proto.face_profiles):
-                        if (other.vertical): continue
+                        if other.vertical: continue
                         if fp.id == other.id and (not fp.flipping or fp.flipped != other.flipped):
-                            self.potential_neighbours[i].append((proto.id, (i - j + 2) % 4))
+                            fp.potential_neighbours.append(Neighbour(proto.id, (i - j + 2) % 4))
 
 # in order to make faces face each other regardless of where they are
 # associate an orientation to each face profile as an offset from 0 on the unit circle * PI/2
@@ -270,16 +276,19 @@ file.write('\n')
 
 for proto in prototypes:
     file.write(proto.name + '\n')
-    for (fp, pn) in zip(proto.face_profiles, proto.potential_neighbours):
+    for fp in proto.face_profiles:
         file.write(str(fp) + '\n')
-        file.write(str(pn) + '\n')
+        file.write(str(fp.potential_neighbours) + '\n')
     file.write('\n')
 
 with open("data.json", "w") as json_file:
     for p in prototypes:
+        for fp in p.face_profiles:
+            fp.potential_neighbours = [pn.__dict__ for pn in fp.potential_neighbours]
         p.face_profiles = tuple(fp.__dict__ for fp in p.face_profiles)
     data = [p.__dict__ for p in prototypes]
-    json.dump(data, json_file, indent=2)
+    data_wrapper = {"data": data}
+    json.dump(data_wrapper, json_file, indent=2)
 
 '''
 as a rule for placement, overlapping geometry shouldn't be authorized

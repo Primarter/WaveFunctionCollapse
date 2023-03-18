@@ -1,0 +1,2715 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "name": "-1",
+      "face_profiles": [
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 3
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 3,
+              "rotation": 3
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Inwards floor corner",
+      "face_profiles": [
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": true,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 3
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            }
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": true,
+          "flipped": true,
+          "potential_neighbours": [
+            {
+              "id": 6,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Flat wall",
+      "face_profiles": [
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "vertical": true,
+          "rotating": true,
+          "flipping": true,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": []
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 3,
+              "rotation": 3
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": true,
+          "flipped": true,
+          "potential_neighbours": []
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Inwards ceiling corner",
+      "face_profiles": [
+        {
+          "id": -1,
+          "vertical": true,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 3
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 3,
+              "rotation": 2
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": true,
+          "flipped": true,
+          "potential_neighbours": []
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Flat floor",
+      "face_profiles": [
+        {
+          "id": -1,
+          "vertical": true,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": true,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 3
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Outwards corner",
+      "face_profiles": [
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": true,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 3
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            }
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": true,
+          "flipped": true,
+          "potential_neighbours": [
+            {
+              "id": 6,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Floor edge",
+      "face_profiles": [
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": false,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": true,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 3
+            },
+            {
+              "id": 1,
+              "rotation": 2
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 3,
+              "rotation": 3
+            },
+            {
+              "id": 3,
+              "rotation": 2
+            },
+            {
+              "id": 4,
+              "rotation": 3
+            },
+            {
+              "id": 4,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 3
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 3
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            }
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": true,
+          "flipped": true,
+          "potential_neighbours": [
+            {
+              "id": 6,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 0,
+              "rotation": 3
+            },
+            {
+              "id": 0,
+              "rotation": 2
+            },
+            {
+              "id": 0,
+              "rotation": 1
+            },
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 1
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 3
+            },
+            {
+              "id": 2,
+              "rotation": 1
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 1
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 1
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 2
+            },
+            {
+              "id": 5,
+              "rotation": 1
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 2
+            },
+            {
+              "id": 6,
+              "rotation": 1
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            {
+              "id": 0,
+              "rotation": 0
+            },
+            {
+              "id": 1,
+              "rotation": 0
+            },
+            {
+              "id": 2,
+              "rotation": 0
+            },
+            {
+              "id": 3,
+              "rotation": 0
+            },
+            {
+              "id": 4,
+              "rotation": 0
+            },
+            {
+              "id": 5,
+              "rotation": 0
+            },
+            {
+              "id": 6,
+              "rotation": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
