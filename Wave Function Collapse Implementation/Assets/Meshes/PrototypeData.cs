@@ -22,7 +22,7 @@ public struct FaceProfile
 }
 
 [System.Serializable]
-public struct Prototype
+public class Prototype
 {
     public int id;
     public string name;
