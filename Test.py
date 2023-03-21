@@ -2,7 +2,7 @@ from __future__ import annotations
 import bpy
 from mathutils import Vector
 from dataclasses import dataclass
-from copy import copy
+from copy import deepcopy
 from pathlib import Path
 import json
 from typing import List, Tuple, Dict
@@ -29,10 +29,8 @@ NY = 3 # FORWARD
 NZ = 4 # DOWN
 PZ = 5 # UP
 
-@dataclass
-class Neighbour:
-    id: int = 0
-    rotation: int = 0
+def rotate_list(l: List, n: int):
+    return l[n:] + l[:n]
 
 class FaceProfile:
     def __init__(self, uid: int, vertical: bool = False, rotating: bool = False, rotation: int = 0) -> None:
@@ -42,7 +40,7 @@ class FaceProfile:
         self.flipping = rotating
         self.rotation = rotation
         self.flipped = bool(rotation)
-        self.potential_neighbours: List[Neighbour] = []
+        self.potential_neighbours: List[int] = []
 
     def __str__(self) -> str:
         name = str(self.id)
@@ -60,28 +58,44 @@ class FaceProfile:
 class Prototype:
     prototype_count = 0
 
-    def __init__(self, name: str, face_profiles: Tuple[FaceProfile]):
+    def __init__(self, name: str, face_profiles: Tuple[FaceProfile], rotation: int):
         self.id = Prototype.prototype_count
         Prototype.prototype_count += 1
+        self.rotation = rotation
         self.name = name
-        self.face_profiles: Tuple[FaceProfile] = face_profiles
+        self.face_profiles: Tuple[FaceProfile] = tuple(deepcopy(fp) for fp in face_profiles)
 
     def get_potential_neighbours(self, prototype_list: List[Prototype]):
         for i, fp in enumerate(self.face_profiles):
             if i == NZ:
                 for proto in prototype_list:
-                    if proto.face_profiles[PZ].id == fp.id:
-                        fp.potential_neighbours.append(Neighbour(proto.id, fp.rotation))
+                    if proto.face_profiles[PZ].id == fp.id and proto.face_profiles[PZ].rotation == fp.rotation:
+                        fp.potential_neighbours.append(proto.id)
             elif i == PZ:
                 for proto in prototype_list:
-                    if proto.face_profiles[NZ].id == fp.id:
-                        fp.potential_neighbours.append(Neighbour(proto.id, fp.rotation))
-            else:
+                    if proto.face_profiles[NZ].id == fp.id and proto.face_profiles[NZ].rotation == fp.rotation:
+                        fp.potential_neighbours.append(proto.id)
+            elif i == PX:
                 for proto in prototype_list:
-                    for j, other in enumerate(proto.face_profiles):
-                        if other.vertical: continue
-                        if fp.id == other.id and (not fp.flipping or fp.flipped != other.flipped):
-                            fp.potential_neighbours.append(Neighbour(proto.id, (i - j + 2) % 4))
+                    other = proto.face_profiles[NX]
+                    if (other.id == fp.id and (not fp.flipping or fp.flipped != other.flipped)):
+                        fp.potential_neighbours.append(proto.id)
+            elif i == PY:
+                for proto in prototype_list:
+                    other = proto.face_profiles[NY]
+                    if (other.id == fp.id and (not fp.flipping or fp.flipped != other.flipped)):
+                        fp.potential_neighbours.append(proto.id)
+            elif i == NX:
+                for proto in prototype_list:
+                    other = proto.face_profiles[PX]
+                    if (other.id == fp.id and (not fp.flipping or fp.flipped != other.flipped)):
+                        fp.potential_neighbours.append(proto.id)
+            elif i == NY:
+                for proto in prototype_list:
+                    other = proto.face_profiles[PY]
+                    if (other.id == fp.id and (not fp.flipping or fp.flipped != other.flipped)):
+                        fp.potential_neighbours.append(proto.id)
+
 
 # in order to make faces face each other regardless of where they are
 # associate an orientation to each face profile as an offset from 0 on the unit circle * PI/2
@@ -108,7 +122,7 @@ known_vertical_face_profiles: List[Tuple[List[Tuple], Orientation, str]] = [([],
 profile_id = 0
 
 prototypes: List[Prototype] = [
-    Prototype("-1", (FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1)))
+    Prototype("-1", (FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1)), -1)
 ] # first prototype is empty
 
 def get_orientation(fpg):
@@ -211,7 +225,7 @@ for obj in objects:
         fpg = [(x, y) for (x, y, nx, ny) in fpg] # discarding normals as we now have orientation
         for (kfp, ori, ofp) in known_face_profiles:
             if (Counter(kfp) == Counter(fpg) and ori == fpg_ori):
-                obj_face_profiles[i] = copy(ofp)
+                obj_face_profiles[i] = deepcopy(ofp)
                 break
         else:
             flipped_fpg = [(-x, y) for (x, y) in fpg]
@@ -237,7 +251,7 @@ for obj in objects:
         fpg = [(x, y) for (x, y, nx, ny) in fpg] # discarding normals as we now have orientation
         for (kfp, ori, ofp) in known_vertical_face_profiles:
             if (Counter(kfp) == Counter(fpg) and ori == fpg_ori):
-                obj_face_profiles[i] = copy(ofp)
+                obj_face_profiles[i] = deepcopy(ofp)
                 break
         else:
             rot_1, rot_1_ori = ([(-x, y) for (x, y) in fpg], rot_orientation(fpg_ori, 2))
@@ -257,7 +271,12 @@ for obj in objects:
                 known_vertical_face_profiles.append((rot_3, rot_3_ori, FaceProfile(profile_id, True, True, 3)))
             profile_id += 1
     file.write('\n')
-    prototypes.append(Prototype(obj.name, tuple(obj_face_profiles)))
+    hfp = obj_face_profiles[:4]
+    vfp = obj_face_profiles[4:]
+    prototypes.append(Prototype(obj.name, tuple(obj_face_profiles), 0))
+    prototypes.append(Prototype(obj.name, tuple(rotate_list(hfp, 1) + vfp), 1))
+    prototypes.append(Prototype(obj.name, tuple(rotate_list(hfp, 2) + vfp), 2))
+    prototypes.append(Prototype(obj.name, tuple(rotate_list(hfp, 3) + vfp), 3))
 
 for proto in prototypes:
     proto.get_potential_neighbours(prototypes)
@@ -283,8 +302,6 @@ for proto in prototypes:
 
 with open("data.json", "w") as json_file:
     for p in prototypes:
-        for fp in p.face_profiles:
-            fp.potential_neighbours = [pn.__dict__ for pn in fp.potential_neighbours]
         p.face_profiles = tuple(fp.__dict__ for fp in p.face_profiles)
     data = [p.__dict__ for p in prototypes]
     data_wrapper = {"data": data}

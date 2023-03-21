@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct Neighbour
-{
-    public int id;
-    public int rotation;
-}
-
-[System.Serializable]
 public struct FaceProfile
 {
     public int id;
@@ -18,13 +11,14 @@ public struct FaceProfile
     public bool flipping;
     public int rotation;
     public bool flipped;
-    public Neighbour[] potential_neighbours;
+    public int[] potential_neighbours;
 }
 
 [System.Serializable]
 public class Prototype
 {
     public int id;
+    public int rotation;
     public string name;
     public Mesh mesh;
     public FaceProfile[] face_profiles;

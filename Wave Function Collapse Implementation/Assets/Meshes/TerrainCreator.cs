@@ -115,8 +115,8 @@ public class TerrainCreator : MonoBehaviour
                     List<Prototype> possibleNeighbours = new List<Prototype>();
                     foreach (Prototype proto in current.possibilites) {
                         var potNeighIdces = proto.face_profiles[dirIdx].potential_neighbours;
-                        foreach (Neighbour nb in potNeighIdces) {
-                            possibleNeighbours.Add(Array.Find(prototypes, (proto) => proto.id == nb.id));
+                        foreach (int nb in potNeighIdces) {
+                            possibleNeighbours.Add(Array.Find(prototypes, (proto) => proto.id == nb));
                         }
                     }
 
