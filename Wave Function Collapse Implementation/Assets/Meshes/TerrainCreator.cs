@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,15 @@ public class TerrainCreator : MonoBehaviour
     private int uncollapsedCellsCount;
     private int minEntropy;
     private Vector3Int minEntropyPoint;
+
+    // private enum DirectionIndex { // for face profiles
+    //     LEFT = 0,
+    //     BACKWARDS = 1,
+    //     RIGHT = 2,
+    //     FORWARD = 3,
+    //     DOWN = 4,
+    //     UP = 5
+    // };
 
     private void Awake() {
         prototypePrefab = Resources.Load<GameObject>("WFC/Prototype");
@@ -45,9 +55,9 @@ public class TerrainCreator : MonoBehaviour
         terrainGrid = new Superposition[mapSize.x, mapSize.y, mapSize.z];
 
         // Filling superposition grid
-        for (int x = 0; x < terrainGrid.GetLength(0); x++) {
-            for (int y = 0; y < terrainGrid.GetLength(1); y++) {
-                for (int z = 0; z < terrainGrid.GetLength(2); z++) {
+        for (int x = 0; x < mapSize.x; x++) {
+            for (int y = 0; y < mapSize.y; y++) {
+                for (int z = 0; z < mapSize.z; z++) {
                     terrainGrid[x,y,z].possibilites = new List<Prototype>(prototypes);
                     terrainGrid[x,y,z].collapsedValue = null;
                 }
@@ -64,55 +74,68 @@ public class TerrainCreator : MonoBehaviour
             // Collapse minEntropyPoint
             terrainGrid[x,y,z].collapsedValue = Instantiate<GameObject>(prototypePrefab, this.transform); // Set prefab
             terrainGrid[x,y,z].collapsedValue.transform.position = new Vector3(x,y,z); // Set position of prefab
-            int chosenPossibilityIdx = Random.Range(0, terrainGrid[x,y,z].possibilites.Count); // Choose random possibility
+            int chosenPossibilityIdx = UnityEngine.Random.Range(0, terrainGrid[x,y,z].possibilites.Count); // Choose random possibility
             terrainGrid[x,y,z].collapsedValue.GetComponent<MeshFilter>().mesh = terrainGrid[x,y,z].possibilites[chosenPossibilityIdx].mesh; // Assign mesh
             terrainGrid[x,y,z].possibilites.Clear();
             uncollapsedCellsCount -= 1;
 
-            // TODO: Propagate collapse
-            /* pseudo code
-            stack = []
-            stack.push(minEntropyPoint)
+            // Propagate collapse
+            Stack<Vector3Int> stack = new Stack<Vector3Int>(); // Contains all cells to update
+            stack.Push(minEntropyPoint); // adding starting point
 
-            while stack !empty
-                coords = stack.pop
-                current = terrainGrid[coords]
+            while (stack.Count > 0) { // While not fully propagated
+                Vector3Int coords = stack.Pop();
+                Superposition current = terrainGrid[coords.x, coords.y, coords.z];
 
-                enum DirectionIndices // for face profiles
-                    LEFT
-                    BACKWARDS
-                    RIGHT
-                    FORWARD
-                    DOWN
-                    UP
-                Vector3Int[] dirs = [
-                    coords + new Vector3Int (-1, 0, 0)   // LEFT
-                    coords + new Vector3Int (0, 0, -1)   // BACKWARDS
-                    coords + new Vector3Int (1, 0, 0)    // RIGHT
-                    coords + new Vector3Int (0, 0, 1)    // FORWARD
-                    coords + new Vector3Int (0, -1, 0)   // DOWN
-                    coords + new Vector3Int (0, 1, 0)    // UP
-                ]
-                List<(Vector3Int, fpIdx)> validDirs = []
+                // Get all neighbour directions to check
+                Vector3Int[] dirs = { // Indices of these are setup to mirror index setup from Blender script but with Unity coord system
+                    coords + new Vector3Int (-1, 0, 0), // LEFT
+                    coords + new Vector3Int (0, 0, -1), // BACKWARDS
+                    coords + new Vector3Int (1, 0, 0),  // RIGHT
+                    coords + new Vector3Int (0, 0, 1),  // FORWARD
+                    coords + new Vector3Int (0, -1, 0), // DOWN
+                    coords + new Vector3Int (0, 1, 0)   // UP
+                }; // Handedness and up vectors are a pain
+
+                // Get only valid neighbour directions to check
+                List<(Vector3Int, int)> validDirs = new List<(Vector3Int, int)>();
                 for (int i = 0; i < dirs.Length; i++)
-                    if ((dirs[i].x < terrainGrid.GetLength(0)
-                        && dirs[i].y < terrainGrid.GetLength(1)
-                        && dirs[i].z < terrainGrid.GetLength(2))
-                    && (terrainGrid[dirs[i].x, dirs[i].y, dirs[i].z].possibilites.Count > 0))
-                        validDirs.append(dirs[i], i)
+                    if ((dirs[i].x < mapSize.x
+                        && dirs[i].y < mapSize.y
+                        && dirs[i].z < mapSize.z) // if inside grid
+                        && (terrainGrid[dirs[i].x, dirs[i].y, dirs[i].z].possibilites.Count > 0)) // if not collapsed
+                    {
+                        validDirs.Add((dirs[i], i));
+                    }
 
-                for dir in validDirs
-                    Prototype[] possibleNeighbours = []
-                    for proto in current.possibilites
-                        possibleNeighbours.append(proto.face_profiles[dir].potential_neighbours)
-                    other = terrainGrid[coords + dir]
-                    bool change = false
-                    for proto in other.possibilities
-                        if not proto in possibleNeighbours
-                            other.possibilities.remove(proto)
-                            change = true
-                    if change stack.push(other)
-            */
+                // Propagating through each direction
+                foreach ((Vector3Int dir, int dirIdx) in validDirs) { // dirIdx == direction's face profile's idx
+
+                    // Creating potential neighbour list for direction
+                    List<Prototype> possibleNeighbours = new List<Prototype>();
+                    foreach (Prototype proto in current.possibilites) {
+                        var potNeighIdces = proto.face_profiles[dirIdx].potential_neighbours;
+                        foreach (Neighbour nb in potNeighIdces) {
+                            possibleNeighbours.Add(Array.Find(prototypes, (proto) => proto.id == nb.id));
+                        }
+                    }
+
+                    // Removing 
+                    Vector3Int otherCoords = coords + dir;
+                    Superposition other = terrainGrid[otherCoords.x, otherCoords.y, otherCoords.z];
+                    bool change = false;
+                    foreach (var proto in other.possibilites)
+                        if (!(possibleNeighbours.Contains(proto))) {
+                            other.possibilites.Remove(proto);
+                            change = true;
+                            if (other.possibilites.Count <= minEntropy) {
+                                minEntropy = other.possibilites.Count;
+                                minEntropyPoint = otherCoords;
+                            }
+                        }
+                    if (change) stack.Push(otherCoords);
+                }
+            }
         }
     }
 }
