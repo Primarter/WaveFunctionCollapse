@@ -22,12 +22,12 @@ print('#############\n### DEBUG ###\n#############\n')
 objects = bpy.data.collections['Prototypes'].all_objects
 
 # Tuple indices for neighbour association
-PX = 0
-PY = 1
-NX = 2
-NY = 3
-NZ = 4
-PZ = 5
+PX = 0 # LEFT
+PY = 1 # BACKWARDS
+NX = 2 # RIGHT
+NY = 3 # FORWARD
+NZ = 4 # DOWN
+PZ = 5 # UP
 
 @dataclass
 class Neighbour:
