@@ -55,6 +55,10 @@ class FaceProfile:
                 name += 's'
         return name
 
+    def get_rotated(self, n: int) -> FaceProfile:
+        self.rotation = n
+        return deepcopy(self)
+
 class Prototype:
     prototype_count = 0
 
@@ -64,6 +68,16 @@ class Prototype:
         self.rotation = rotation
         self.name = name
         self.face_profiles: Tuple[FaceProfile] = tuple(deepcopy(fp) for fp in face_profiles)
+
+    def getAllRotations(self) -> List[Prototype]:
+        hfp = obj_face_profiles[:4]
+        vfp = obj_face_profiles[4:]
+        return [
+            self,
+            Prototype(obj.name, tuple(rotate_list(hfp, 1) + [fp.get_rotated((fp.rotation + 1) % 4) for fp in vfp]), 1),
+            Prototype(obj.name, tuple(rotate_list(hfp, 2) + [fp.get_rotated((fp.rotation + 2) % 4) for fp in vfp]), 2),
+            Prototype(obj.name, tuple(rotate_list(hfp, 3) + [fp.get_rotated((fp.rotation + 3) % 4) for fp in vfp]), 3)
+        ]
 
     def get_potential_neighbours(self, prototype_list: List[Prototype]):
         for i, fp in enumerate(self.face_profiles):
@@ -220,22 +234,28 @@ for obj in objects:
     # Create/Associate horizontal face profiles
     for i, fpg in enumerate(face_profiles_geometry):
         if len(fpg) == 0:
+            obj_face_profiles[i] = FaceProfile(-1, True)
+            # file.write('Identified empty horizontal face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
             continue
         fpg_ori = get_orientation(fpg)
         fpg = [(x, y) for (x, y, nx, ny) in fpg] # discarding normals as we now have orientation
         for (kfp, ori, ofp) in known_face_profiles:
             if (Counter(kfp) == Counter(fpg) and ori == fpg_ori):
-                obj_face_profiles[i] = deepcopy(ofp)
+                obj_face_profiles[i] = ofp
+                # file.write('Identified horizontal face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
                 break
         else:
             flipped_fpg = [(-x, y) for (x, y) in fpg]
             if Counter(fpg) == Counter(flipped_fpg) and fpg_ori == flip_orientation(fpg_ori):
                 ofp = FaceProfile(profile_id, False, False)
                 known_face_profiles.append((fpg, fpg_ori, ofp))
+                known_face_profiles.append((flipped_fpg, fpg_ori, ofp))
+                obj_face_profiles[i] = ofp
                 file.write('new profile found: ' + str(ofp) + ' ' + str(fpg_ori) + '\n')
             else:
                 ofp = FaceProfile(profile_id, False, True, False)
                 known_face_profiles.append((fpg, fpg_ori, ofp))
+                obj_face_profiles[i] = ofp
                 file.write('new profile found: ' + str(ofp) + ' ' + str(fpg_ori) + '\n')
                 ofp = FaceProfile(profile_id, False, True, True)
                 known_face_profiles.append((flipped_fpg, flip_orientation(fpg_ori), ofp))
@@ -244,14 +264,17 @@ for obj in objects:
 
     # Create/Associate vertical face profiles
     for i, fpg in enumerate(vertical_face_profiles_geometry):
+        i += 4
         if len(fpg) == 0:
             obj_face_profiles[i] = FaceProfile(-1, True)
+            # file.write('Identified empty vertical face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
             continue
         fpg_ori = get_orientation(fpg)
         fpg = [(x, y) for (x, y, nx, ny) in fpg] # discarding normals as we now have orientation
         for (kfp, ori, ofp) in known_vertical_face_profiles:
             if (Counter(kfp) == Counter(fpg) and ori == fpg_ori):
-                obj_face_profiles[i] = deepcopy(ofp)
+                obj_face_profiles[i] = ofp
+                # file.write('Identified vertical face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
                 break
         else:
             rot_1, rot_1_ori = ([(-x, y) for (x, y) in fpg], rot_orientation(fpg_ori, 2))
@@ -261,9 +284,11 @@ for obj in objects:
             and fpg_ori == rot_1_ori and fpg_ori == rot_2_ori and fpg_ori == rot_3_ori:
                 ofp = FaceProfile(profile_id, True, False)
                 known_vertical_face_profiles.append((fpg, Orientation.NONE, ofp))
+                obj_face_profiles[i] = ofp
                 file.write('new profile found: ' + str(ofp) + '\n')
             else:
                 ofp = FaceProfile(profile_id, True, True, 0)
+                obj_face_profiles[i] = ofp
                 file.write('new profiles found: ' + str(ofp) + ', 1, 2, 3\n')
                 known_vertical_face_profiles.append((fpg, fpg_ori, ofp))
                 known_vertical_face_profiles.append((rot_1, rot_1_ori, FaceProfile(profile_id, True, True, 1)))
@@ -273,31 +298,30 @@ for obj in objects:
     file.write('\n')
     hfp = obj_face_profiles[:4]
     vfp = obj_face_profiles[4:]
-    prototypes.append(Prototype(obj.name, tuple(obj_face_profiles), 0))
-    prototypes.append(Prototype(obj.name, tuple(rotate_list(hfp, 1) + vfp), 1))
-    prototypes.append(Prototype(obj.name, tuple(rotate_list(hfp, 2) + vfp), 2))
-    prototypes.append(Prototype(obj.name, tuple(rotate_list(hfp, 3) + vfp), 3))
+    # file.write('Face profiles: ' + str([str(fp) for fp in obj_face_profiles]) + '\n')
+    proto = Prototype(obj.name, tuple(obj_face_profiles), 0)
+    prototypes += proto.getAllRotations()
 
 for proto in prototypes:
     proto.get_potential_neighbours(prototypes)
 
 file.write('\n### DATA ###\n\n')
 
-for fp, ori, ofp in known_face_profiles:
-    file.write(str(fp) + ' ' + str(ori) + ' ' + str(ofp) + '\n')
+# for fp, ori, ofp in known_face_profiles:
+#     file.write(str(fp) + ' ' + str(ori) + ' ' + str(ofp) + '\n')
 
-file.write('\n')
+# file.write('\n')
 
-for fp, ori, ofp in known_vertical_face_profiles:
-    file.write(str(fp) + ' ' + str(ori) + ' ' + str(ofp) + '\n')
+# for fp, ori, ofp in known_vertical_face_profiles:
+#     file.write(str(fp) + ' ' + str(ori) + ' ' + str(ofp) + '\n')
 
-file.write('\n')
+# file.write('\n')
 
 for proto in prototypes:
-    file.write(proto.name + '\n')
+    file.write(proto.name + ' ' + str(proto.id) + '\n')
     for fp in proto.face_profiles:
         file.write(str(fp) + '\n')
-        file.write(str(fp.potential_neighbours) + '\n')
+        # file.write(str(fp.potential_neighbours) + '\n')
     file.write('\n')
 
 with open("data.json", "w") as json_file:
@@ -308,11 +332,7 @@ with open("data.json", "w") as json_file:
     json.dump(data_wrapper, json_file, indent=2)
 
 '''
-as a rule for placement, overlapping geometry shouldn't be authorized
-I need to find a way to enforce this. One way could be to add a prefix to signify that only air should be used next to this one
-basically if there is a face formed by the geometry on this profile, nothing can go next to that profile
-or when building everything, making sure there are no faces on the edges but this would limit variety and make everything end on a half step
-this can be added later on
+Rotation is made through swizzling the sides
 '''
 
 file.close()
