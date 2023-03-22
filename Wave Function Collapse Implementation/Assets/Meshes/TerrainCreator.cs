@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct Superposition
+public class Superposition
 {
     public List<Prototype> possibilites;
     public GameObject collapsedValue;
@@ -58,11 +58,14 @@ public class TerrainCreator : MonoBehaviour
         for (int x = 0; x < mapSize.x; x++) {
             for (int y = 0; y < mapSize.y; y++) {
                 for (int z = 0; z < mapSize.z; z++) {
+                    terrainGrid[x,y,z] = new Superposition();
                     terrainGrid[x,y,z].possibilites = new List<Prototype>(prototypes);
                     terrainGrid[x,y,z].collapsedValue = null;
+                    // Debug.Log(("Init", terrainGrid[x,y,z].possibilites.Count));
                 }
             }
         }
+        // Debug.Log(terrainGrid[10,0,11]);
 
         uncollapsedCellsCount = mapSize.x * mapSize.y * mapSize.z; // TODO: Decrease when a cell collapses
         minEntropyPoint = mapSize/2; // TODO: Change when propagating, randomise if tie
@@ -70,20 +73,29 @@ public class TerrainCreator : MonoBehaviour
 
         while (uncollapsedCellsCount > 0) {
             (int x, int y, int z) = (minEntropyPoint.x, minEntropyPoint.y, minEntropyPoint.z);
+            // Debug.Log(minEntropyPoint);
 
+            if (terrainGrid[x,y,z].possibilites.Count == 0)
+                break;
             // Collapse minEntropyPoint
             terrainGrid[x,y,z].collapsedValue = Instantiate<GameObject>(prototypePrefab, this.transform); // Set prefab
             terrainGrid[x,y,z].collapsedValue.transform.position = new Vector3(x,y,z); // Set position of prefab
             int chosenPossibilityIdx = UnityEngine.Random.Range(0, terrainGrid[x,y,z].possibilites.Count); // Choose random possibility
+            // Debug.Log((terrainGrid[x,y,z].possibilites.Count, chosenPossibilityIdx));
             terrainGrid[x,y,z].collapsedValue.GetComponent<MeshFilter>().mesh = terrainGrid[x,y,z].possibilites[chosenPossibilityIdx].mesh; // Assign mesh
-            terrainGrid[x,y,z].possibilites.Clear();
             uncollapsedCellsCount -= 1;
 
             // Propagate collapse
             Stack<Vector3Int> stack = new Stack<Vector3Int>(); // Contains all cells to update
             stack.Push(minEntropyPoint); // adding starting point
 
+            int block = 0;
             while (stack.Count > 0) { // While not fully propagated
+                block += 1;
+                if (block > 400) {
+                    Debug.Log("Cucked");
+                    return;
+                }
                 Vector3Int coords = stack.Pop();
                 Superposition current = terrainGrid[coords.x, coords.y, coords.z];
 
@@ -98,21 +110,24 @@ public class TerrainCreator : MonoBehaviour
                 }; // Handedness and up vectors are a pain
 
                 // Get only valid neighbour directions to check
-                List<(Vector3Int, int)> validDirs = new List<(Vector3Int, int)>();
-                for (int i = 0; i < dirs.Length; i++)
-                    if ((dirs[i].x < mapSize.x
-                        && dirs[i].y < mapSize.y
-                        && dirs[i].z < mapSize.z) // if inside grid
-                        && (terrainGrid[dirs[i].x, dirs[i].y, dirs[i].z].possibilites.Count > 0)) // if not collapsed
+                List<(Vector3Int, int)> validNbCoords = new List<(Vector3Int, int)>();
+                for (int i = 0; i < dirs.Length; i++) {
+                    if (dirs[i].x < mapSize.x && dirs[i].x >= 0
+                        && dirs[i].y < mapSize.y && dirs[i].y >= 0
+                        && dirs[i].z < mapSize.z && dirs[i].z >= 0) // if inside grid
                     {
-                        validDirs.Add((dirs[i], i));
+                        if (terrainGrid[dirs[i].x, dirs[i].y, dirs[i].z].possibilites.Count > 0) {
+                            validNbCoords.Add((dirs[i], i));
+                        }
                     }
+                }
 
                 // Propagating through each direction
-                foreach ((Vector3Int dir, int dirIdx) in validDirs) { // dirIdx == direction's face profile's idx
+                foreach ((Vector3Int otherCoords, int dirIdx) in validNbCoords) { // dirIdx == direction's face profile's idx
 
                     // Creating potential neighbour list for direction
                     List<Prototype> possibleNeighbours = new List<Prototype>();
+                    // Debug.Log(("current", current.possibilites.Count));
                     foreach (Prototype proto in current.possibilites) {
                         var potNeighIdces = proto.face_profiles[dirIdx].potential_neighbours;
                         foreach (int nb in potNeighIdces) {
@@ -120,22 +135,28 @@ public class TerrainCreator : MonoBehaviour
                         }
                     }
 
-                    // Removing 
-                    Vector3Int otherCoords = coords + dir;
+                    // Getting Superposition to update
                     Superposition other = terrainGrid[otherCoords.x, otherCoords.y, otherCoords.z];
+
+                    // Removing invalid neighbours from Superposition by checking possibleNeighbours List
                     bool change = false;
-                    foreach (var proto in other.possibilites)
-                        if (!(possibleNeighbours.Contains(proto))) {
+                    // Debug.Log(possibleNeighbours.Count);
+                    for (int idx = other.possibilites.Count - 1; idx >= 0; idx--) {
+                        var proto = other.possibilites[idx];
+                        if (!(possibleNeighbours.Exists(nb => nb.id == proto.id))) {
                             other.possibilites.Remove(proto);
                             change = true;
                             if (other.possibilites.Count <= minEntropy) {
                                 minEntropy = other.possibilites.Count;
                                 minEntropyPoint = otherCoords;
+                                Debug.Log(("Entropy", minEntropy, minEntropyPoint));
                             }
                         }
-                    if (change) stack.Push(otherCoords);
+                    }
+                    if (change && !stack.Contains(otherCoords)) stack.Push(otherCoords);
                 }
             }
+            terrainGrid[x,y,z].possibilites.Clear();
         }
     }
 }
