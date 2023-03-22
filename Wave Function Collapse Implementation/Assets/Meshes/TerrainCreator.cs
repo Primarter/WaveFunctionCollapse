@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Superposition
+public struct Superposition
 {
     public List<Prototype> possibilites;
     public GameObject collapsedValue;
@@ -58,7 +58,7 @@ public class TerrainCreator : MonoBehaviour
         for (int x = 0; x < mapSize.x; x++) {
             for (int y = 0; y < mapSize.y; y++) {
                 for (int z = 0; z < mapSize.z; z++) {
-                    terrainGrid[x,y,z] = new Superposition();
+                    // terrainGrid[x,y,z] = new Superposition();
                     terrainGrid[x,y,z].possibilites = new List<Prototype>(prototypes);
                     terrainGrid[x,y,z].collapsedValue = null;
                     // Debug.Log(("Init", terrainGrid[x,y,z].possibilites.Count));
@@ -75,14 +75,19 @@ public class TerrainCreator : MonoBehaviour
             (int x, int y, int z) = (minEntropyPoint.x, minEntropyPoint.y, minEntropyPoint.z);
             // Debug.Log(minEntropyPoint);
 
-            if (terrainGrid[x,y,z].possibilites.Count == 0)
+            if (terrainGrid[x,y,z].possibilites.Count == 0) {
+                Debug.Log(("error", minEntropyPoint));
                 break;
+            }
             // Collapse minEntropyPoint
             terrainGrid[x,y,z].collapsedValue = Instantiate<GameObject>(prototypePrefab, this.transform); // Set prefab
             terrainGrid[x,y,z].collapsedValue.transform.position = new Vector3(x,y,z); // Set position of prefab
             int chosenPossibilityIdx = UnityEngine.Random.Range(0, terrainGrid[x,y,z].possibilites.Count); // Choose random possibility
             // Debug.Log((terrainGrid[x,y,z].possibilites.Count, chosenPossibilityIdx));
+            Prototype chosenPrototype = terrainGrid[x,y,z].possibilites[chosenPossibilityIdx];
             terrainGrid[x,y,z].collapsedValue.GetComponent<MeshFilter>().mesh = terrainGrid[x,y,z].possibilites[chosenPossibilityIdx].mesh; // Assign mesh
+            terrainGrid[x,y,z].possibilites.Clear();
+            terrainGrid[x,y,z].possibilites.Add(chosenPrototype);
             uncollapsedCellsCount -= 1;
 
             // Propagate collapse
@@ -92,8 +97,8 @@ public class TerrainCreator : MonoBehaviour
             int block = 0;
             while (stack.Count > 0) { // While not fully propagated
                 block += 1;
-                if (block > 400) {
-                    Debug.Log("Cucked");
+                if (stack.Count > 401 && block > 5000) {
+                    Debug.Log(("Cucked", stack.Count));
                     return;
                 }
                 Vector3Int coords = stack.Pop();
@@ -116,7 +121,7 @@ public class TerrainCreator : MonoBehaviour
                         && dirs[i].y < mapSize.y && dirs[i].y >= 0
                         && dirs[i].z < mapSize.z && dirs[i].z >= 0) // if inside grid
                     {
-                        if (terrainGrid[dirs[i].x, dirs[i].y, dirs[i].z].possibilites.Count > 0) {
+                        if (terrainGrid[dirs[i].x, dirs[i].y, dirs[i].z].collapsedValue == null) {
                             validNbCoords.Add((dirs[i], i));
                         }
                     }
@@ -142,20 +147,22 @@ public class TerrainCreator : MonoBehaviour
                     bool change = false;
                     // Debug.Log(possibleNeighbours.Count);
                     for (int idx = other.possibilites.Count - 1; idx >= 0; idx--) {
-                        var proto = other.possibilites[idx];
-                        if (!(possibleNeighbours.Exists(nb => nb.id == proto.id))) {
-                            other.possibilites.Remove(proto);
+                        var otherProto = other.possibilites[idx];
+                        if (!(possibleNeighbours.Exists(nb => nb.id == otherProto.id))) {
+                            other.possibilites.RemoveAt(idx);
                             change = true;
                             if (other.possibilites.Count <= minEntropy) {
                                 minEntropy = other.possibilites.Count;
                                 minEntropyPoint = otherCoords;
-                                Debug.Log(("Entropy", minEntropy, minEntropyPoint));
+                                // Debug.Log(("Entropy", minEntropy, minEntropyPoint));
                             }
                         }
                     }
+                    Debug.Log(otherCoords);
                     if (change && !stack.Contains(otherCoords)) stack.Push(otherCoords);
                 }
             }
+            Debug.Log(("MIN ENTROPY POINT########################################", minEntropyPoint));
             terrainGrid[x,y,z].possibilites.Clear();
         }
     }
