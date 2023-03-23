@@ -14,1838 +14,8 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            3,
-            4,
-            5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            2,
-            3,
-            6,
-            8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
             6,
             7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 1,
-      "rotation": 0,
-      "name": "Inwards floor corner",
-      "face_profiles": [
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            3,
-            4,
-            5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": true,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            2,
-            3,
-            6,
-            8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
-          ]
-        },
-        {
-          "id": 1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            3,
-            15,
-            16
-          ]
-        },
-        {
-          "id": 0,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": [
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "rotation": 1,
-      "name": "Inwards floor corner",
-      "face_profiles": [
-        {
-          "id": -1,
-          "vertical": true,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            3,
-            4,
-            5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            4,
-            13,
-            16
-          ]
-        },
-        {
-          "id": 0,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": [
-            21
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "rotation": 2,
-      "name": "Inwards floor corner",
-      "face_profiles": [
-        {
-          "id": 1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            1,
-            13,
-            14
-          ]
-        },
-        {
-          "id": 0,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": [
-            22
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": true,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "rotation": 3,
-      "name": "Inwards floor corner",
-      "face_profiles": [
-        {
-          "id": 0,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": [
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            2,
-            3,
-            6,
-            8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": true,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            2,
-            14,
-            15
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "rotation": 0,
-      "name": "Flat wall",
-      "face_profiles": [
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            3,
-            4,
-            5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 4,
-          "vertical": true,
-          "rotating": true,
-          "flipping": true,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 3,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "rotation": 1,
-      "name": "Flat wall",
-      "face_profiles": [
-        {
-          "id": 4,
-          "vertical": true,
-          "rotating": true,
-          "flipping": true,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            2,
-            3,
-            6,
-            8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
-          ]
-        },
-        {
-          "id": 3,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "rotation": 2,
-      "name": "Flat wall",
-      "face_profiles": [
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            3,
-            4,
-            5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 3,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 4,
-          "vertical": true,
-          "rotating": true,
-          "flipping": true,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "rotation": 3,
-      "name": "Flat wall",
-      "face_profiles": [
-        {
-          "id": 3,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            2,
-            3,
-            6,
-            8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
-          ]
-        },
-        {
-          "id": 4,
-          "vertical": true,
-          "rotating": true,
-          "flipping": true,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "rotation": 0,
-      "name": "Inwards ceiling corner",
-      "face_profiles": [
-        {
-          "id": -1,
-          "vertical": true,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            3,
-            4,
-            5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            2,
-            3,
-            6,
-            8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
-          ]
-        },
-        {
-          "id": 6,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            11
-          ]
-        },
-        {
-          "id": 5,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "rotation": 1,
-      "name": "Inwards ceiling corner",
-      "face_profiles": [
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            3,
-            4,
-            5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 6,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            12
-          ]
-        },
-        {
-          "id": 5,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": true,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 11,
-      "rotation": 2,
-      "name": "Inwards ceiling corner",
-      "face_profiles": [
-        {
-          "id": 6,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            9
-          ]
-        },
-        {
-          "id": 5,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": true,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        }
-      ]
-    },
-    {
-      "id": 12,
-      "rotation": 3,
-      "name": "Inwards ceiling corner",
-      "face_profiles": [
-        {
-          "id": 5,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": []
-        },
-        {
-          "id": -1,
-          "vertical": true,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            2,
-            3,
-            6,
-            8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 6,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
             10
           ]
         },
@@ -1858,30 +28,37 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            1,
-            2,
-            3,
-            4,
             5,
             6,
+            9
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            0,
+            5,
+            8,
+            12
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            0,
             7,
             8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            11
           ]
         },
         {
@@ -1894,39 +71,90 @@
           "potential_neighbours": [
             0,
             1,
-            2,
-            3,
-            4,
             5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            9
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            0,
+            1
           ]
         }
       ]
     },
     {
-      "id": 13,
+      "id": 1,
       "rotation": 0,
       "name": "Flat floor",
       "face_profiles": [
         {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            12
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            11
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            10
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            9
+          ]
+        },
+        {
           "id": -1,
           "vertical": true,
           "rotating": false,
@@ -1935,19 +163,9 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            3,
-            4,
+            1,
             5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
+            9
           ]
         },
         {
@@ -1959,277 +177,109 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            2,
-            3,
-            6,
-            8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
-          ]
-        },
-        {
-          "id": 1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            3,
-            15,
-            16
-          ]
-        },
-        {
-          "id": 1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            2,
-            14,
-            15
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            1
           ]
         }
       ]
     },
     {
-      "id": 14,
+      "id": 2,
       "rotation": 1,
       "name": "Flat floor",
       "face_profiles": [
         {
-          "id": -1,
-          "vertical": true,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            3,
-            4,
-            5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 1,
+          "id": 0,
           "vertical": false,
           "rotating": false,
           "flipping": false,
           "rotation": 0,
           "flipped": false,
           "potential_neighbours": [
-            4,
-            13,
-            16
-          ]
-        },
-        {
-          "id": 1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            3,
-            15,
-            16
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": true,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
             1,
             2,
             3,
             4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            12
           ]
         },
         {
-          "id": -1,
+          "id": 0,
           "vertical": false,
           "rotating": false,
           "flipping": false,
           "rotation": 0,
           "flipped": false,
           "potential_neighbours": [
-            0,
             1,
             2,
             3,
             4,
-            5,
+            11
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            10
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": true,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 1,
+          "flipped": false,
+          "potential_neighbours": [
+            2,
             6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            10
+          ]
+        },
+        {
+          "id": -1,
+          "vertical": true,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 1,
+          "flipped": false,
+          "potential_neighbours": [
+            2
           ]
         }
       ]
     },
     {
-      "id": 15,
+      "id": 3,
       "rotation": 2,
       "name": "Flat floor",
       "face_profiles": [
         {
-          "id": 1,
+          "id": 0,
           "vertical": false,
           "rotating": false,
           "flipping": false,
@@ -2237,21 +287,55 @@
           "flipped": false,
           "potential_neighbours": [
             1,
-            13,
-            14
+            2,
+            3,
+            4,
+            12
           ]
         },
         {
-          "id": 1,
+          "id": 0,
           "vertical": false,
           "rotating": false,
           "flipping": false,
           "rotation": 0,
           "flipped": false,
           "potential_neighbours": [
+            1,
+            2,
+            3,
             4,
-            13,
-            16
+            11
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            10
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            9
           ]
         },
         {
@@ -2259,23 +343,12 @@
           "vertical": true,
           "rotating": false,
           "flipping": false,
-          "rotation": 0,
+          "rotation": 3,
           "flipped": false,
           "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
+            3,
             7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
+            11
           ]
         },
         {
@@ -2283,104 +356,21 @@
           "vertical": true,
           "rotating": false,
           "flipping": false,
-          "rotation": 0,
+          "rotation": 3,
           "flipped": false,
           "potential_neighbours": [
-            0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            3
           ]
         }
       ]
     },
     {
-      "id": 16,
+      "id": 4,
       "rotation": 3,
       "name": "Flat floor",
       "face_profiles": [
         {
-          "id": 1,
+          "id": 0,
           "vertical": false,
           "rotating": false,
           "flipping": false,
@@ -2388,8 +378,55 @@
           "flipped": false,
           "potential_neighbours": [
             1,
-            13,
-            14
+            2,
+            3,
+            4,
+            12
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            11
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            10
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            9
           ]
         },
         {
@@ -2397,23 +434,12 @@
           "vertical": true,
           "rotating": false,
           "flipping": false,
-          "rotation": 0,
+          "rotation": 2,
           "flipped": false,
           "potential_neighbours": [
-            0,
-            2,
-            3,
-            6,
+            4,
             8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
+            12
           ]
         },
         {
@@ -2421,137 +447,55 @@
           "vertical": true,
           "rotating": false,
           "flipping": false,
-          "rotation": 0,
+          "rotation": 2,
           "flipped": false,
           "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            2,
-            14,
-            15
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            4
           ]
         }
       ]
     },
     {
-      "id": 17,
+      "id": 5,
       "rotation": 0,
       "name": "Outwards corner",
       "face_profiles": [
         {
           "id": -1,
-          "vertical": false,
+          "vertical": true,
           "rotating": false,
           "flipping": false,
           "rotation": 0,
           "flipped": false,
           "potential_neighbours": [
             0,
-            3,
-            4,
-            5,
+            6,
             7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
+            10
+          ]
+        },
+        {
+          "id": 1,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": false,
+          "flipped": false,
+          "potential_neighbours": [
+            8,
+            12
+          ]
+        },
+        {
+          "id": 1,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": true,
+          "flipped": true,
+          "potential_neighbours": [
+            6,
+            9
           ]
         },
         {
@@ -2563,134 +507,64 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            2,
-            3,
-            6,
+            7,
             8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
+            11
           ]
         },
         {
-          "id": 0,
-          "vertical": false,
+          "id": 2,
+          "vertical": true,
           "rotating": true,
           "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": [
-            21
-          ]
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": []
         },
         {
           "id": -1,
-          "vertical": false,
+          "vertical": true,
           "rotating": false,
           "flipping": false,
           "rotation": 0,
           "flipped": false,
           "potential_neighbours": [
             0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            1
           ]
         }
       ]
     },
     {
-      "id": 18,
+      "id": 6,
       "rotation": 1,
       "name": "Outwards corner",
       "face_profiles": [
         {
+          "id": 1,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": false,
+          "flipped": false,
+          "potential_neighbours": [
+            5,
+            9
+          ]
+        },
+        {
+          "id": 1,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": true,
+          "flipped": true,
+          "potential_neighbours": [
+            7,
+            10
+          ]
+        },
+        {
           "id": -1,
           "vertical": true,
           "rotating": false,
@@ -2699,214 +573,62 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            3,
-            4,
             5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
+            8,
+            12
           ]
         },
         {
-          "id": 0,
-          "vertical": false,
+          "id": -1,
+          "vertical": true,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            0,
+            7,
+            8,
+            11
+          ]
+        },
+        {
+          "id": 2,
+          "vertical": true,
           "rotating": true,
           "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": [
-            22
-          ]
+          "rotation": 1,
+          "flipped": false,
+          "potential_neighbours": []
         },
         {
           "id": -1,
-          "vertical": false,
+          "vertical": true,
           "rotating": false,
           "flipping": false,
-          "rotation": 0,
+          "rotation": 1,
           "flipped": false,
           "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            2
           ]
         }
       ]
     },
     {
-      "id": 19,
+      "id": 7,
       "rotation": 2,
       "name": "Outwards corner",
       "face_profiles": [
         {
-          "id": 0,
+          "id": 1,
           "vertical": false,
           "rotating": true,
           "flipping": true,
           "rotation": true,
           "flipped": true,
           "potential_neighbours": [
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            2,
-            3,
-            6,
             8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
+            11
           ]
         },
         {
@@ -2918,144 +640,76 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            1,
-            4,
+            5,
             6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
+            9
           ]
         },
         {
           "id": -1,
-          "vertical": false,
+          "vertical": true,
           "rotating": false,
           "flipping": false,
           "rotation": 0,
           "flipped": false,
           "potential_neighbours": [
             0,
-            1,
-            2,
-            3,
-            4,
             5,
-            6,
-            7,
             8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            12
           ]
         },
         {
-          "id": -1,
+          "id": 1,
           "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
+          "rotating": true,
+          "flipping": true,
+          "rotation": false,
           "flipped": false,
           "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
             6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            10
+          ]
+        },
+        {
+          "id": 2,
+          "vertical": true,
+          "rotating": true,
+          "flipping": true,
+          "rotation": 3,
+          "flipped": false,
+          "potential_neighbours": []
+        },
+        {
+          "id": -1,
+          "vertical": true,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 3,
+          "flipped": false,
+          "potential_neighbours": [
+            3
           ]
         }
       ]
     },
     {
-      "id": 20,
+      "id": 8,
       "rotation": 3,
       "name": "Outwards corner",
       "face_profiles": [
         {
           "id": -1,
-          "vertical": false,
+          "vertical": true,
           "rotating": false,
           "flipping": false,
           "rotation": 0,
           "flipped": false,
           "potential_neighbours": [
             0,
-            3,
-            4,
-            5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            2,
-            3,
             6,
-            8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
+            7,
+            10
           ]
         },
         {
@@ -3067,120 +721,99 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            1,
-            2,
             5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
+            6,
+            9
           ]
         },
         {
-          "id": 0,
+          "id": 1,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": false,
+          "flipped": false,
+          "potential_neighbours": [
+            7,
+            11
+          ]
+        },
+        {
+          "id": 1,
           "vertical": false,
           "rotating": true,
           "flipping": true,
           "rotation": true,
           "flipped": true,
           "potential_neighbours": [
-            24
+            5,
+            12
           ]
         },
         {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
+          "id": 2,
+          "vertical": true,
+          "rotating": true,
+          "flipping": true,
+          "rotation": 2,
           "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
+          "potential_neighbours": []
         },
         {
           "id": -1,
-          "vertical": false,
+          "vertical": true,
           "rotating": false,
           "flipping": false,
-          "rotation": 0,
+          "rotation": 2,
           "flipped": false,
           "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            4
           ]
         }
       ]
     },
     {
-      "id": 21,
+      "id": 9,
       "rotation": 0,
       "name": "Floor edge",
       "face_profiles": [
         {
-          "id": 0,
+          "id": 1,
           "vertical": false,
           "rotating": true,
           "flipping": true,
           "rotation": false,
           "flipped": false,
           "potential_neighbours": [
+            5,
+            9
+          ]
+        },
+        {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
             2,
-            17,
-            21
+            3,
+            4,
+            11
+          ]
+        },
+        {
+          "id": 1,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": true,
+          "flipped": true,
+          "potential_neighbours": [
+            6,
+            9
           ]
         },
         {
@@ -3192,134 +825,67 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            2,
-            3,
-            6,
+            7,
             8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
+            11
           ]
         },
         {
-          "id": 0,
-          "vertical": false,
+          "id": 3,
+          "vertical": true,
           "rotating": true,
           "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": [
-            21
-          ]
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": []
         },
         {
           "id": -1,
-          "vertical": false,
+          "vertical": true,
           "rotating": false,
           "flipping": false,
           "rotation": 0,
           "flipped": false,
           "potential_neighbours": [
             0,
-            1,
-            4,
-            6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            1
           ]
         }
       ]
     },
     {
-      "id": 22,
+      "id": 10,
       "rotation": 1,
       "name": "Floor edge",
       "face_profiles": [
         {
+          "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            12
+          ]
+        },
+        {
+          "id": 1,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": true,
+          "flipped": true,
+          "potential_neighbours": [
+            7,
+            10
+          ]
+        },
+        {
           "id": -1,
           "vertical": true,
           "rotating": false,
@@ -3328,192 +894,60 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            3,
-            4,
             5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
+            8,
+            12
           ]
         },
         {
-          "id": 0,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": true,
-          "flipped": true,
-          "potential_neighbours": [
-            22
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            5,
-            7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 0,
+          "id": 1,
           "vertical": false,
           "rotating": true,
           "flipping": true,
           "rotation": false,
           "flipped": false,
           "potential_neighbours": [
-            3,
-            18,
-            22
+            6,
+            10
           ]
         },
         {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
+          "id": 3,
+          "vertical": true,
+          "rotating": true,
+          "flipping": true,
+          "rotation": 1,
           "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
+          "potential_neighbours": []
         },
         {
           "id": -1,
-          "vertical": false,
+          "vertical": true,
           "rotating": false,
           "flipping": false,
-          "rotation": 0,
+          "rotation": 1,
           "flipped": false,
           "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            2
           ]
         }
       ]
     },
     {
-      "id": 23,
+      "id": 11,
       "rotation": 2,
       "name": "Floor edge",
       "face_profiles": [
         {
-          "id": 0,
+          "id": 1,
           "vertical": false,
           "rotating": true,
           "flipping": true,
           "rotation": true,
           "flipped": true,
           "potential_neighbours": [
-            23
-          ]
-        },
-        {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            2,
-            3,
-            6,
             8,
-            10,
-            11,
-            14,
-            15,
-            17,
-            18,
-            19,
-            21,
-            23
-          ]
-        },
-        {
-          "id": 0,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": false,
-          "flipped": false,
-          "potential_neighbours": [
-            4,
-            19,
-            23
+            11
           ]
         },
         {
@@ -3525,137 +959,67 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            1,
-            4,
+            5,
             6,
-            8,
-            9,
-            12,
-            13,
-            16,
-            17,
-            19,
-            20,
-            21,
-            23
+            9
           ]
         },
         {
-          "id": -1,
+          "id": 1,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": false,
+          "flipped": false,
+          "potential_neighbours": [
+            7,
+            11
+          ]
+        },
+        {
+          "id": 0,
           "vertical": false,
           "rotating": false,
           "flipping": false,
           "rotation": 0,
           "flipped": false,
           "potential_neighbours": [
-            0,
             1,
             2,
             3,
             4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            9
           ]
         },
         {
+          "id": 3,
+          "vertical": true,
+          "rotating": true,
+          "flipping": true,
+          "rotation": 3,
+          "flipped": false,
+          "potential_neighbours": []
+        },
+        {
           "id": -1,
-          "vertical": false,
+          "vertical": true,
           "rotating": false,
           "flipping": false,
-          "rotation": 0,
+          "rotation": 3,
           "flipped": false,
           "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            3
           ]
         }
       ]
     },
     {
-      "id": 24,
+      "id": 12,
       "rotation": 3,
       "name": "Floor edge",
       "face_profiles": [
         {
           "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
-          "flipped": false,
-          "potential_neighbours": [
-            0,
-            3,
-            4,
-            5,
-            7,
-            11,
-            12,
-            15,
-            16,
-            18,
-            19,
-            20,
-            22,
-            24
-          ]
-        },
-        {
-          "id": 0,
-          "vertical": false,
-          "rotating": true,
-          "flipping": true,
-          "rotation": false,
-          "flipped": false,
-          "potential_neighbours": [
-            1,
-            20,
-            24
-          ]
-        },
-        {
-          "id": -1,
           "vertical": true,
           "rotating": false,
           "flipping": false,
@@ -3663,100 +1027,68 @@
           "flipped": false,
           "potential_neighbours": [
             0,
-            1,
-            2,
-            5,
+            6,
             7,
-            9,
-            10,
-            13,
-            14,
-            17,
-            18,
-            20,
-            22,
-            24
+            10
+          ]
+        },
+        {
+          "id": 1,
+          "vertical": false,
+          "rotating": true,
+          "flipping": true,
+          "rotation": false,
+          "flipped": false,
+          "potential_neighbours": [
+            8,
+            12
           ]
         },
         {
           "id": 0,
+          "vertical": false,
+          "rotating": false,
+          "flipping": false,
+          "rotation": 0,
+          "flipped": false,
+          "potential_neighbours": [
+            1,
+            2,
+            3,
+            4,
+            10
+          ]
+        },
+        {
+          "id": 1,
           "vertical": false,
           "rotating": true,
           "flipping": true,
           "rotation": true,
           "flipped": true,
           "potential_neighbours": [
-            24
+            5,
+            12
           ]
         },
         {
-          "id": -1,
-          "vertical": false,
-          "rotating": false,
-          "flipping": false,
-          "rotation": 0,
+          "id": 3,
+          "vertical": true,
+          "rotating": true,
+          "flipping": true,
+          "rotation": 2,
           "flipped": false,
-          "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
-          ]
+          "potential_neighbours": []
         },
         {
           "id": -1,
-          "vertical": false,
+          "vertical": true,
           "rotating": false,
           "flipping": false,
-          "rotation": 0,
+          "rotation": 2,
           "flipped": false,
           "potential_neighbours": [
-            0,
-            1,
-            2,
-            3,
-            4,
-            5,
-            6,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19,
-            20,
-            21,
-            22,
-            23,
-            24
+            4
           ]
         }
       ]
