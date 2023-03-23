@@ -7,7 +7,8 @@ using UnityEngine.Profiling;
 public struct Superposition
 {
     public List<Prototype> possibilites;
-    public GameObject collapsedValue;
+    public GameObject collapsedGameObj;
+    public Prototype collapsedPrototype;
 }
 
 // TODO:
@@ -28,8 +29,6 @@ public class TerrainCreator : MonoBehaviour
     private int minEntropy;
     private Vector3Int minEntropyPoint;
     private List<Vector3Int> minEntropyPoints = new List<Vector3Int>();
-
-    System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
     private void Awake() {
         prototypePrefab = Resources.Load<GameObject>("WFC/Prototype");
@@ -59,7 +58,7 @@ public class TerrainCreator : MonoBehaviour
             for (int y = 0; y < mapSize.y; y++) {
                 for (int z = 0; z < mapSize.z; z++) {
                     terrainGrid[x,y,z].possibilites = new List<Prototype>(prototypes);
-                    terrainGrid[x,y,z].collapsedValue = null;
+                    terrainGrid[x,y,z].collapsedGameObj = null;
                 }
             }
         }
@@ -69,14 +68,11 @@ public class TerrainCreator : MonoBehaviour
         minEntropyPoints.Add(mapSize/2);
         minEntropy = prototypes.Length;
 
-        // sw.Start();
-        Profiler.BeginSample("Wave Function Collapse");
-        while (uncollapsedCellsCount > 0) {
-            CollapseStep();
-        }
-        Profiler.EndSample();
-        // sw.Stop();
-        Debug.Log(sw.ElapsedMilliseconds);
+        // Profiler.BeginSample("Wave Function Collapse");
+        // while (uncollapsedCellsCount > 0) {
+        //     CollapseStep();
+        // }
+        // Profiler.EndSample();
     }
 
     private void Update() {
@@ -137,16 +133,28 @@ public class TerrainCreator : MonoBehaviour
 
     private void CollapseCell(int x, int y, int z) {
         // Create prefab
-        terrainGrid[x,y,z].collapsedValue = Instantiate<GameObject>(prototypePrefab, this.transform); // Set prefab
-        terrainGrid[x,y,z].collapsedValue.transform.position = new Vector3(x,y,z); // Set position of prefab
+        terrainGrid[x,y,z].collapsedGameObj = Instantiate<GameObject>(prototypePrefab, this.transform); // Set prefab
+        terrainGrid[x,y,z].collapsedGameObj.transform.position = new Vector3(x,y,z); // Set position of prefab
+
+        if (terrainGrid[x,y,z].possibilites.Count == 0) {
+            InstantiateEmpty(x,y,z);
+            return;
+        }
 
         // Choose random prototype in possibilities
         int chosenPossibilityIdx = UnityEngine.Random.Range(0, terrainGrid[x,y,z].possibilites.Count);
         Prototype chosenPrototype = terrainGrid[x,y,z].possibilites[chosenPossibilityIdx];
 
+        if (y - 1 >= 0
+            && terrainGrid[x, y - 1, z].collapsedPrototype != null
+            && terrainGrid[x, y - 1, z].collapsedPrototype.face_profiles[5].id == -1) // Need to fix this so that it actually prevents overlapping blocks
+        {
+            chosenPrototype = prototypes[0];
+        }
+
         // Set mesh and rotation of prefab from prototype
-        terrainGrid[x,y,z].collapsedValue.GetComponent<MeshFilter>().mesh = terrainGrid[x,y,z].possibilites[chosenPossibilityIdx].mesh; // Assign mesh
-        terrainGrid[x,y,z].collapsedValue.transform.rotation = Quaternion.Euler(0, 90 * chosenPrototype.rotation, 0); // Set rotation of prefab
+        terrainGrid[x,y,z].collapsedGameObj.GetComponent<MeshFilter>().mesh = chosenPrototype.mesh; // Assign mesh
+        terrainGrid[x,y,z].collapsedGameObj.transform.rotation = Quaternion.Euler(0, 90 * chosenPrototype.rotation, 0); // Set rotation of prefab
 
         // Setup possibilities to propagate properly later
         terrainGrid[x,y,z].possibilites.Clear();
@@ -177,7 +185,7 @@ public class TerrainCreator : MonoBehaviour
                 && dirs[i].y < mapSize.y && dirs[i].y >= 0
                 && dirs[i].z < mapSize.z && dirs[i].z >= 0) // if inside grid
             {
-                if (terrainGrid[dirs[i].x, dirs[i].y, dirs[i].z].collapsedValue == null) {
+                if (terrainGrid[dirs[i].x, dirs[i].y, dirs[i].z].collapsedGameObj == null) {
                     validNbCoords.Add((dirs[i], i));
                 }
             }
@@ -206,6 +214,10 @@ public class TerrainCreator : MonoBehaviour
                     other.possibilites.RemoveAt(idx);
                     UpdateEntropy(other.possibilites.Count, otherCoords);
                     change = true;
+                    if (other.possibilites.Count == 0) {
+                        other.possibilites.Add(prototypes[0]);
+                        break;
+                    }
                 }
             }
             if (change && !stack.Contains(otherCoords)) stack.Push(otherCoords);
@@ -227,11 +239,22 @@ public class TerrainCreator : MonoBehaviour
         for (int x = 0; x < mapSize.x; x++)
             for (int y = 0; y < mapSize.y; y++)
                 for (int z = 0; z < mapSize.z; z++)
-                    if (terrainGrid[x,y,z].collapsedValue == null
+                    if (terrainGrid[x,y,z].collapsedGameObj == null
                     && terrainGrid[x,y,z].possibilites.Count > 0
                     && terrainGrid[x,y,z].possibilites.Count < minEntropy) {
                         UpdateEntropy(terrainGrid[x,y,z].possibilites.Count, new Vector3Int(x,y,z));
                     }
+    }
+
+    private void InstantiateEmpty(int x, int y, int z) {
+        // Set mesh and rotation of prefab from prototype
+        terrainGrid[x,y,z].collapsedGameObj = Instantiate<GameObject>(prototypePrefab, this.transform); // Set prefab
+        terrainGrid[x,y,z].collapsedGameObj.transform.position = new Vector3(x,y,z); // Set position of prefab
+        terrainGrid[x,y,z].collapsedPrototype = prototypes[0];
+        terrainGrid[x,y,z].possibilites.Clear();
+        terrainGrid[x,y,z].possibilites.Add(prototypes[0]);
+
+        uncollapsedCellsCount -= 1;
     }
 
 }
