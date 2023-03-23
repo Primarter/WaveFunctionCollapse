@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 public struct Superposition
 {
@@ -27,6 +28,8 @@ public class TerrainCreator : MonoBehaviour
     private int minEntropy;
     private Vector3Int minEntropyPoint;
     private List<Vector3Int> minEntropyPoints = new List<Vector3Int>();
+
+    System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
 
     private void Awake() {
         prototypePrefab = Resources.Load<GameObject>("WFC/Prototype");
@@ -62,18 +65,23 @@ public class TerrainCreator : MonoBehaviour
         }
 
         uncollapsedCellsCount = mapSize.x * mapSize.y * mapSize.z;
-        minEntropyPoint = mapSize/2;
-        // minEntropyPoints.Add(mapSize/2);
+        // minEntropyPoint = mapSize/2;
+        minEntropyPoints.Add(mapSize/2);
         minEntropy = prototypes.Length;
 
+        // sw.Start();
+        Profiler.BeginSample("Wave Function Collapse");
         while (uncollapsedCellsCount > 0) {
             CollapseStep();
         }
+        Profiler.EndSample();
+        // sw.Stop();
+        Debug.Log(sw.ElapsedMilliseconds);
     }
 
     private void Update() {
+        // if (Input.GetKeyDown(KeyCode.Space) && uncollapsedCellsCount > 0) {
         if (uncollapsedCellsCount > 0) {
-            // Debug.Log(minEntropyPoint);
             CollapseStep();
         }
     }
@@ -104,25 +112,15 @@ public class TerrainCreator : MonoBehaviour
         //     return;
         // }
 
-        // Resetting minEntropy by searching through the list
-        // optimisation possible by using a list of minEntropyPoints (also allows for randomisation of ties)
-        minEntropy = prototypes.Length;
-        for (int ix = 0; ix < mapSize.x; ix++) {
-            for (int iy = 0; iy < mapSize.y; iy++) {
-                for (int iz = 0; iz < mapSize.z; iz++) {
-                    if (terrainGrid[ix,iy,iz].collapsedValue == null
-                    && terrainGrid[ix,iy,iz].possibilites.Count > 0
-                    && terrainGrid[ix,iy,iz].possibilites.Count < minEntropy) {
-                        minEntropy = terrainGrid[ix,iy,iz].possibilites.Count;
-                        minEntropyPoint = new Vector3Int(ix, iy, iz);
-                    }
-                }
-            }
+        // Setting entropy point, either from list of entropy points or researching the whole grid
+        if (minEntropyPoints.Count == 0) {
+            ResetEntropy();
         }
-        // minEntropyPoint = minEntropyPoints[UnityEngine.Random.Range(0, minEntropyPoints.Count)];
+        int chosenEntropy = UnityEngine.Random.Range(0, minEntropyPoints.Count);
+        minEntropyPoint = minEntropyPoints[chosenEntropy];
+        minEntropyPoints.RemoveAt(chosenEntropy);
 
         (int x, int y, int z) = (minEntropyPoint.x, minEntropyPoint.y, minEntropyPoint.z);
-        Debug.Log(("MIN ENTROPY POINT ", minEntropyPoint, minEntropy));
 
         CollapseCell(x,y,z);
 
@@ -206,7 +204,7 @@ public class TerrainCreator : MonoBehaviour
                 var otherProto = other.possibilites[idx];
                 if (!(possibleNeighbours.Exists(nb => nb.id == otherProto.id))) {
                     other.possibilites.RemoveAt(idx);
-                    // UpdateEntropy(other.possibilites.Count, otherCoords);
+                    UpdateEntropy(other.possibilites.Count, otherCoords);
                     change = true;
                 }
             }
@@ -222,6 +220,18 @@ public class TerrainCreator : MonoBehaviour
         } else if (newCellEntropy == minEntropy) {
             minEntropyPoints.Add(cellCoords);
         }
+    }
+
+    private void ResetEntropy() {
+        minEntropy = prototypes.Length;
+        for (int x = 0; x < mapSize.x; x++)
+            for (int y = 0; y < mapSize.y; y++)
+                for (int z = 0; z < mapSize.z; z++)
+                    if (terrainGrid[x,y,z].collapsedValue == null
+                    && terrainGrid[x,y,z].possibilites.Count > 0
+                    && terrainGrid[x,y,z].possibilites.Count < minEntropy) {
+                        UpdateEntropy(terrainGrid[x,y,z].possibilites.Count, new Vector3Int(x,y,z));
+                    }
     }
 
 }
