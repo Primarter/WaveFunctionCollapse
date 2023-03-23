@@ -363,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prototypesAsset: {fileID: 919132149155446097, guid: f8b5e9696d2b387409285c4c0ae635fa, type: 3}
   prototypesDataFile: {fileID: 4900000, guid: 71de6cf93339c5a429fdec0f2db99ed0, type: 3}
-  mapSize: {x: 5, y: 1, z: 5}
+  mapSize: {x: 10, y: 1, z: 10}
 --- !u!4 &1728813185
 Transform:
   m_ObjectHideFlags: 0
