@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
+using UnityEngine.Events;
 
 public struct Superposition
 {
@@ -22,6 +23,7 @@ public class TerrainCreator : MonoBehaviour
     public GameObject prototypesAsset;
     public TextAsset prototypesDataFile;
     public Vector3Int mapSize = new Vector3Int(20, 1, 20);
+    public UnityEvent OnCollapsed;
 
     private GameObject prototypePrefab;
     private Prototype[] prototypes;
@@ -73,6 +75,7 @@ public class TerrainCreator : MonoBehaviour
         while (uncollapsedCellsCount > 0) {
             CollapseStep();
         }
+        OnCollapsed.Invoke();
         // Profiler.EndSample();
     }
 
