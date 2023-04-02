@@ -18,10 +18,11 @@ public struct FaceProfile
 public class Prototype
 {
     public int id;
-    public int rotation;
     public string name;
-    public Mesh mesh;
+    public float weight;
     public FaceProfile[] face_profiles;
+    public int rotation;
+    public Mesh mesh;
 }
 
 [System.Serializable]

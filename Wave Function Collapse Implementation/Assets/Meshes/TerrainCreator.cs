@@ -12,10 +12,11 @@ public struct Superposition
 }
 
 // TODO:
-// Add weights to prototype choices
+// Add weights to prototype choices // DONE
 // See with Paul for plants
 // Add vertical orientation to prototypes (two collections in Blender for easy solution, then a single one with normal computations)
-// Check verticality: if upwards block is placed, either the column upwards is empty or the next block encountered is downwards
+//     Check verticality: if upwards block is placed, either the column upwards is empty or the next block encountered is downwards
+// Optimisation: First remove lists then make it a burst job
 public class TerrainCreator : MonoBehaviour
 {
     public GameObject prototypesAsset;
@@ -69,9 +70,9 @@ public class TerrainCreator : MonoBehaviour
         minEntropy = prototypes.Length;
 
         // Profiler.BeginSample("Wave Function Collapse");
-        // while (uncollapsedCellsCount > 0) {
-        //     CollapseStep();
-        // }
+        while (uncollapsedCellsCount > 0) {
+            CollapseStep();
+        }
         // Profiler.EndSample();
     }
 
@@ -143,7 +144,7 @@ public class TerrainCreator : MonoBehaviour
 
         // Choose random prototype in possibilities
         int chosenPossibilityIdx = UnityEngine.Random.Range(0, terrainGrid[x,y,z].possibilites.Count);
-        Prototype chosenPrototype = terrainGrid[x,y,z].possibilites[chosenPossibilityIdx];
+        Prototype chosenPrototype = ChoseRandomPrototype(terrainGrid[x,y,z].possibilites);
 
         if (y - 1 >= 0
             && terrainGrid[x, y - 1, z].collapsedPrototype != null
@@ -255,6 +256,30 @@ public class TerrainCreator : MonoBehaviour
         terrainGrid[x,y,z].possibilites.Add(prototypes[0]);
 
         uncollapsedCellsCount -= 1;
+    }
+
+    private Prototype ChoseRandomPrototype(List<Prototype> possibilities) {
+        float totalWeight = 0;
+
+        foreach (var proto in possibilities) {
+            totalWeight += proto.weight;
+        }
+
+        Prototype selectedPrototype = null;
+
+        float randomNumber = UnityEngine.Random.Range(0, totalWeight);
+        foreach (var proto in possibilities)
+        {
+            if (randomNumber < proto.weight)
+            {
+                selectedPrototype = proto;
+                break;
+            }
+
+            randomNumber = randomNumber - proto.weight;
+        }
+
+        return selectedPrototype;
     }
 
 }

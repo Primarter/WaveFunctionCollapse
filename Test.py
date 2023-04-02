@@ -300,8 +300,8 @@ for obj in objects:
     hfp = obj_face_profiles[:4]
     vfp = obj_face_profiles[4:]
     # file.write('Face profiles: ' + str([str(fp) for fp in obj_face_profiles]) + '\n')
-    weight = obj.get("Weight", 1)
-    obj["Weight"] = weight
+    weight: float = obj.get("Weight", 1.0)
+    obj["Weight"] = float(weight)
     proto = Prototype(obj.name, weight, tuple(obj_face_profiles), 0)
     prototypes += proto.getAllRotations()
 
