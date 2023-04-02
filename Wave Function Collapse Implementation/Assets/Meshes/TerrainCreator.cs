@@ -12,10 +12,10 @@ public struct Superposition
 }
 
 // TODO:
-// Fix verticality by not allowing blocks to be on top of a -1
+// Add weights to prototype choices
+// See with Paul for plants
 // Add vertical orientation to prototypes (two collections in Blender for easy solution, then a single one with normal computations)
 // Check verticality: if upwards block is placed, either the column upwards is empty or the next block encountered is downwards
-// Add weights to prototype choices
 public class TerrainCreator : MonoBehaviour
 {
     public GameObject prototypesAsset;

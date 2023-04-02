@@ -62,21 +62,22 @@ class FaceProfile:
 class Prototype:
     prototype_count = 0
 
-    def __init__(self, name: str, face_profiles: Tuple[FaceProfile], rotation: int):
+    def __init__(self, name: str, weight: int, face_profiles: Tuple[FaceProfile], rotation: int):
         self.id = Prototype.prototype_count
         Prototype.prototype_count += 1
-        self.rotation = rotation
         self.name = name
+        self.weight = weight
         self.face_profiles: Tuple[FaceProfile] = tuple(deepcopy(fp) for fp in face_profiles)
+        self.rotation = rotation
 
     def getAllRotations(self) -> List[Prototype]:
         hfp = obj_face_profiles[:4]
         vfp = obj_face_profiles[4:]
         return [
             self,
-            Prototype(obj.name, tuple(rotate_list(hfp, 1) + [fp.get_rotated((fp.rotation + 1) % 4) for fp in vfp]), 1),
-            Prototype(obj.name, tuple(rotate_list(hfp, 2) + [fp.get_rotated((fp.rotation + 2) % 4) for fp in vfp]), 2),
-            Prototype(obj.name, tuple(rotate_list(hfp, 3) + [fp.get_rotated((fp.rotation + 3) % 4) for fp in vfp]), 3)
+            Prototype(obj.name, self.weight, tuple(rotate_list(hfp, 1) + [fp.get_rotated((fp.rotation + 1) % 4) for fp in vfp]), 1),
+            Prototype(obj.name, self.weight, tuple(rotate_list(hfp, 2) + [fp.get_rotated((fp.rotation + 2) % 4) for fp in vfp]), 2),
+            Prototype(obj.name, self.weight, tuple(rotate_list(hfp, 3) + [fp.get_rotated((fp.rotation + 3) % 4) for fp in vfp]), 3)
         ]
 
     def get_potential_neighbours(self, prototype_list: List[Prototype]):
@@ -136,7 +137,7 @@ known_vertical_face_profiles: List[Tuple[List[Tuple], Orientation, str]] = [([],
 profile_id = 0
 
 prototypes: List[Prototype] = [
-    Prototype("-1", (FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1)), -1)
+    Prototype("-1", 1, (FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1), FaceProfile(-1)), -1)
 ] # first prototype is empty
 
 def get_orientation(fpg):
@@ -299,7 +300,9 @@ for obj in objects:
     hfp = obj_face_profiles[:4]
     vfp = obj_face_profiles[4:]
     # file.write('Face profiles: ' + str([str(fp) for fp in obj_face_profiles]) + '\n')
-    proto = Prototype(obj.name, tuple(obj_face_profiles), 0)
+    weight = obj.get("Weight", 1)
+    obj["Weight"] = weight
+    proto = Prototype(obj.name, weight, tuple(obj_face_profiles), 0)
     prototypes += proto.getAllRotations()
 
 for proto in prototypes:
