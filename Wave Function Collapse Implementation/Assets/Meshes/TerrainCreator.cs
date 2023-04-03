@@ -124,7 +124,9 @@ public class TerrainCreator : MonoBehaviour
         stack.Push(minEntropyPoint);
 
         while (stack.Count > 0) { // While not fully propagated
+            // Profiler.BeginSample("Propagate function");
             Propagate(stack);
+            // Profiler.EndSample();
         }
 
         terrainGrid[x,y,z].possibilites.Clear();
