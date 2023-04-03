@@ -14,9 +14,8 @@ public struct Superposition
 
 // TODO:
 // Add weights to prototype choices // DONE
-// See with Paul for plants
-// Add vertical orientation to prototypes (two collections in Blender for easy solution, then a single one with normal computations)
-//     Check verticality: if upwards block is placed, either the column upwards is empty or the next block encountered is downwards
+// See with Paul for plants // DONE
+// Find a solution for verticality
 // Optimisation: First remove lists then make it a burst job
 public class TerrainCreator : MonoBehaviour
 {
@@ -29,7 +28,8 @@ public class TerrainCreator : MonoBehaviour
     private Prototype[] prototypes;
     private Superposition[,,] terrainGrid;
     private int uncollapsedCellsCount;
-    private int minEntropy;
+    private float minEntropy;
+    private float maxEntropy;
     private Vector3Int minEntropyPoint;
     private List<Vector3Int> minEntropyPoints = new List<Vector3Int>();
 
@@ -69,14 +69,16 @@ public class TerrainCreator : MonoBehaviour
         uncollapsedCellsCount = mapSize.x * mapSize.y * mapSize.z;
         // minEntropyPoint = mapSize/2;
         minEntropyPoints.Add(mapSize/2);
-        minEntropy = prototypes.Length;
+        // maxEntropy = ComputeCellEntropy(terrainGrid[0,0,0].possibilites);
+        maxEntropy = prototypes.Length;
+        minEntropy = maxEntropy;
 
-        // Profiler.BeginSample("Wave Function Collapse");
+        Profiler.BeginSample("Wave Function Collapse");
         while (uncollapsedCellsCount > 0) {
             CollapseStep();
         }
         OnCollapsed.Invoke();
-        // Profiler.EndSample();
+        Profiler.EndSample();
     }
 
     private void Update() {
@@ -105,13 +107,6 @@ public class TerrainCreator : MonoBehaviour
     }
 
     private void CollapseStep() {
-        // TODO: Implement backtracking or restart algorithm
-        // if (terrainGrid[minEntropyPoint.x, minEntropyPoint.y, minEntropyPoint.z].possibilites.Count == 0) {
-        //     uncollapsedCellsCount -= 1;
-        //     Debug.Log(("Error in propagation", minEntropyPoint));
-        //     return;
-        // }
-
         // Setting entropy point, either from list of entropy points or researching the whole grid
         if (minEntropyPoints.Count == 0) {
             ResetEntropy();
@@ -146,14 +141,10 @@ public class TerrainCreator : MonoBehaviour
         }
 
         // Choose random prototype in possibilities
-        int chosenPossibilityIdx = UnityEngine.Random.Range(0, terrainGrid[x,y,z].possibilites.Count);
         Prototype chosenPrototype = ChoseRandomPrototype(terrainGrid[x,y,z].possibilites);
-
-        if (y - 1 >= 0
-            && terrainGrid[x, y - 1, z].collapsedPrototype != null
-            && terrainGrid[x, y - 1, z].collapsedPrototype.face_profiles[5].id == -1) // Need to fix this so that it actually prevents overlapping blocks
-        {
+        if (chosenPrototype == null) {
             chosenPrototype = prototypes[0];
+            Debug.LogError("Impossible setup");
         }
 
         // Set mesh and rotation of prefab from prototype
@@ -216,7 +207,7 @@ public class TerrainCreator : MonoBehaviour
                 var otherProto = other.possibilites[idx];
                 if (!(possibleNeighbours.Exists(nb => nb.id == otherProto.id))) {
                     other.possibilites.RemoveAt(idx);
-                    UpdateEntropy(other.possibilites.Count, otherCoords);
+                    UpdateEntropy(other.possibilites, otherCoords);
                     change = true;
                     if (other.possibilites.Count == 0) {
                         other.possibilites.Add(prototypes[0]);
@@ -228,7 +219,27 @@ public class TerrainCreator : MonoBehaviour
         }
     }
 
-    private void UpdateEntropy(int newCellEntropy, Vector3Int cellCoords) {
+    // Could use that rather than random to select lowest entropy point, don't know how useful it would be though
+    private float ComputeCellEntropy(List<Prototype> possibilites) {
+        float mean = 0f;
+        foreach (var p in possibilites) {
+            mean += p.weight;
+        }
+        mean /= possibilites.Count;
+        float stdDev = 0;
+        foreach (var p in possibilites) {
+            stdDev += Mathf.Pow(p.weight - mean, 2);
+        }
+        stdDev /= possibilites.Count;
+        float cellEntropy = 1f/Mathf.Sqrt(stdDev);
+
+        return cellEntropy;
+    }
+    
+    private void UpdateEntropy(List<Prototype> possibilites, Vector3Int cellCoords) {
+        // float newCellEntropy = ComputeCellEntropy(possibilites);
+        float newCellEntropy = possibilites.Count;
+
         if (newCellEntropy < minEntropy) {
             minEntropyPoints.Clear();
             minEntropyPoints.Add(cellCoords);
@@ -239,14 +250,14 @@ public class TerrainCreator : MonoBehaviour
     }
 
     private void ResetEntropy() {
-        minEntropy = prototypes.Length;
+        minEntropy = maxEntropy;
         for (int x = 0; x < mapSize.x; x++)
             for (int y = 0; y < mapSize.y; y++)
                 for (int z = 0; z < mapSize.z; z++)
                     if (terrainGrid[x,y,z].collapsedGameObj == null
                     && terrainGrid[x,y,z].possibilites.Count > 0
                     && terrainGrid[x,y,z].possibilites.Count < minEntropy) {
-                        UpdateEntropy(terrainGrid[x,y,z].possibilites.Count, new Vector3Int(x,y,z));
+                        UpdateEntropy(terrainGrid[x,y,z].possibilites, new Vector3Int(x,y,z));
                     }
     }
 
@@ -262,14 +273,17 @@ public class TerrainCreator : MonoBehaviour
     }
 
     private Prototype ChoseRandomPrototype(List<Prototype> possibilities) {
-        float totalWeight = 0;
+        if (possibilities.Count == 0) {
+            Debug.LogWarning("Impossibility");
+            return null;
+        }
 
+        float totalWeight = 0;
         foreach (var proto in possibilities) {
             totalWeight += proto.weight;
         }
 
         Prototype selectedPrototype = null;
-
         float randomNumber = UnityEngine.Random.Range(0, totalWeight);
         foreach (var proto in possibilities)
         {
@@ -278,8 +292,11 @@ public class TerrainCreator : MonoBehaviour
                 selectedPrototype = proto;
                 break;
             }
-
             randomNumber = randomNumber - proto.weight;
+        }
+
+        if (selectedPrototype == null) {
+            selectedPrototype = possibilities[0];
         }
 
         return selectedPrototype;
