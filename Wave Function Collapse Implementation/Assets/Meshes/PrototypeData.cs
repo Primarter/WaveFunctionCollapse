@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public struct FaceProfile
@@ -30,8 +29,12 @@ public struct PrototypeDataWrapper
 {
     public Prototype[] data;
 
-    public static PrototypeDataWrapper CreateFromJSON(string jsonString)
-    {
-        return JsonUtility.FromJson<PrototypeDataWrapper>(jsonString);
+    public static Dictionary<int, Prototype> CreateFromJSON(string jsonString) {
+        var data = JsonUtility.FromJson<PrototypeDataWrapper>(jsonString).data;
+        Dictionary<int, Prototype> res = new Dictionary<int, Prototype>();
+        foreach (var p in data) {
+            res.Add(p.id, p);
+        }
+        return res;
     }
 }

@@ -1,9 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
 using UnityEngine.Events;
+using Unity.Collections;
 
 public struct Superposition
 {
@@ -25,7 +25,8 @@ public class TerrainCreator : MonoBehaviour
     public UnityEvent OnCollapsed;
 
     private GameObject prototypePrefab;
-    private Prototype[] prototypes;
+    // private Prototype[] prototypes;
+    private Dictionary<int, Prototype> prototypes;
     private Superposition[,,] terrainGrid;
     private int uncollapsedCellsCount;
     private float minEntropy;
@@ -44,8 +45,8 @@ public class TerrainCreator : MonoBehaviour
             return;
         }
         // Getting labelling data from JSON and attaching meshes to it.
-        prototypes = PrototypeDataWrapper.CreateFromJSON(prototypesDataFile.ToString()).data;
-        for (int i = 0; i < prototypes.Length; i++) {
+        prototypes = PrototypeDataWrapper.CreateFromJSON(prototypesDataFile.ToString());
+        for (int i = 0; i < prototypes.Count; i++) {
             foreach(Transform t in prototypesAsset.transform) {
                 if (t.name == prototypes[i].name) {
                     prototypes[i].mesh = t.GetComponent<MeshFilter>().sharedMesh;
@@ -60,7 +61,7 @@ public class TerrainCreator : MonoBehaviour
         for (int x = 0; x < mapSize.x; x++) {
             for (int y = 0; y < mapSize.y; y++) {
                 for (int z = 0; z < mapSize.z; z++) {
-                    terrainGrid[x,y,z].possibilites = new List<Prototype>(prototypes);
+                    terrainGrid[x,y,z].possibilites = new List<Prototype>(prototypes.Values);
                     terrainGrid[x,y,z].collapsedGameObj = null;
                 }
             }
@@ -70,15 +71,13 @@ public class TerrainCreator : MonoBehaviour
         // minEntropyPoint = mapSize/2;
         minEntropyPoints.Add(mapSize/2);
         // maxEntropy = ComputeCellEntropy(terrainGrid[0,0,0].possibilites);
-        maxEntropy = prototypes.Length;
+        maxEntropy = prototypes.Count;
         minEntropy = maxEntropy;
 
-        Profiler.BeginSample("Wave Function Collapse");
         while (uncollapsedCellsCount > 0) {
             CollapseStep();
         }
         OnCollapsed.Invoke();
-        Profiler.EndSample();
     }
 
     private void Update() {
@@ -124,9 +123,7 @@ public class TerrainCreator : MonoBehaviour
         stack.Push(minEntropyPoint);
 
         while (stack.Count > 0) { // While not fully propagated
-            // Profiler.BeginSample("Propagate function");
             Propagate(stack);
-            // Profiler.EndSample();
         }
 
         terrainGrid[x,y,z].possibilites.Clear();
@@ -196,7 +193,8 @@ public class TerrainCreator : MonoBehaviour
             foreach (Prototype proto in current.possibilites) {
                 int[] potNeighIdces = proto.face_profiles[dirIdx].potential_neighbours;
                 foreach (int nb in potNeighIdces) {
-                    possibleNeighbours.Add(Array.Find(prototypes, (proto) => proto.id == nb));
+                    possibleNeighbours.Add(prototypes[nb]);
+                    // possibleNeighbours.Add(Array.Find(prototypes, (proto) => proto.id == nb));
                 }
             }
 
