@@ -126,6 +126,8 @@ public class GrassManager : MonoBehaviour
 
     void Update()
     {
+        if (bladeCount <= 0) return;
+
         Graphics.DrawMeshInstancedProcedural(
             mesh,
             0,
