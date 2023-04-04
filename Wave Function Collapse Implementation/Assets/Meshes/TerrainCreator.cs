@@ -147,9 +147,10 @@ public class TerrainCreator : MonoBehaviour
         }
 
         // Set mesh and rotation of prefab from prototype
-        terrainGrid[x,y,z].collapsedGameObj.GetComponent<MeshFilter>().mesh = chosenPrototype.mesh; // Assign mesh
-        terrainGrid[x,y,z].collapsedGameObj.GetComponent<MeshCollider>().sharedMesh = chosenPrototype.mesh; // Assign mesh
+        var meshFilter = terrainGrid[x,y,z].collapsedGameObj.GetComponent<MeshFilter>();
+        meshFilter.mesh = chosenPrototype.mesh; // Assign mesh
         terrainGrid[x,y,z].collapsedGameObj.transform.rotation = Quaternion.Euler(0, 90 * chosenPrototype.rotation, 0); // Set rotation of prefab
+        terrainGrid[x,y,z].collapsedGameObj.GetComponent<MeshCollider>().sharedMesh = meshFilter.mesh; // Assign mesh
 
         // Setup possibilities to propagate properly later
         terrainGrid[x,y,z].possibilites.Clear();
