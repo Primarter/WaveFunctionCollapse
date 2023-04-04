@@ -28,7 +28,7 @@ public class GrassManager : MonoBehaviour
     void Start()
     {
         print("Start Grass!");
-        Init();
+        // Init();
     }
 
     void Init()
@@ -53,7 +53,9 @@ public class GrassManager : MonoBehaviour
 
                 Vector3 pos = new Vector3((float)x * step, 0f, (float)z * step);
 
-                bool didHit = Physics.Raycast(pos + new Vector3(0f, 10f, 0f), Vector3.down, out hit, Mathf.Infinity);
+                bool didHit = Physics.Raycast(pos + new Vector3(0f, 5f, 0f), Vector3.down, out hit, Mathf.Infinity);
+
+                // Debug.DrawRay(pos + new Vector3(0f, 5f, 0f), Vector3.down * 20f, Color.green, 100f);
                 if (didHit == false)
                     continue;
 
@@ -70,6 +72,7 @@ public class GrassManager : MonoBehaviour
                 blade.position.x += offset.x;
                 blade.position.z += offset.y;
 
+                blades.Add(blade);
                 // blades[i].rot = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
             }
         }
