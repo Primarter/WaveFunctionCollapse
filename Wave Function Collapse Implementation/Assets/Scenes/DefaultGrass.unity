@@ -379,11 +379,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 27.031, y: 0, z: 0}
---- !u!1 &1066992591 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4000118441547468434, guid: 14c8c837d4b268c4aa1ef99bd10658b2, type: 3}
+--- !u!114 &1066992592 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4000118441547468437, guid: 14c8c837d4b268c4aa1ef99bd10658b2, type: 3}
   m_PrefabInstance: {fileID: 447128924}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e127925e9c49a94f883c9dc43abdc0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1262457016
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,8 +456,8 @@ MonoBehaviour:
   OnCollapsed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1066992591}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+      - m_Target: {fileID: 1066992592}
+        m_TargetAssemblyTypeName: UnityEngine.Component, UnityEngine
         m_MethodName: BroadcastMessage
         m_Mode: 5
         m_Arguments:

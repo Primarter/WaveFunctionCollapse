@@ -25,6 +25,7 @@ public class TerrainCreator : MonoBehaviour
     public UnityEvent OnCollapsed;
 
     private GameObject prototypePrefab;
+    private Material baseMaterial;
     // private Prototype[] prototypes;
     private Dictionary<int, Prototype> prototypes;
     private Superposition[,,] terrainGrid;
@@ -36,6 +37,7 @@ public class TerrainCreator : MonoBehaviour
 
     private void Awake() {
         prototypePrefab = Resources.Load<GameObject>("WFC/Prototype");
+        baseMaterial = Resources.Load<Material>("WFC/Base");
     }
 
     private void Start() {
@@ -151,6 +153,7 @@ public class TerrainCreator : MonoBehaviour
         meshFilter.mesh = chosenPrototype.mesh; // Assign mesh
         terrainGrid[x,y,z].collapsedGameObj.transform.rotation = Quaternion.Euler(0, 90 * chosenPrototype.rotation, 0); // Set rotation of prefab
         terrainGrid[x,y,z].collapsedGameObj.GetComponent<MeshCollider>().sharedMesh = meshFilter.mesh; // Assign mesh
+        terrainGrid[x,y,z].collapsedGameObj.GetComponent<MeshRenderer>().sharedMaterial = baseMaterial;
 
         // Setup possibilities to propagate properly later
         terrainGrid[x,y,z].possibilites.Clear();
@@ -237,7 +240,7 @@ public class TerrainCreator : MonoBehaviour
 
         return cellEntropy;
     }
-    
+
     private void UpdateEntropy(List<Prototype> possibilites, Vector3Int cellCoords) {
         // float newCellEntropy = ComputeCellEntropy(possibilites);
         float newCellEntropy = possibilites.Count;

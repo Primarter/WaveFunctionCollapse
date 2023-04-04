@@ -17,10 +17,13 @@ public class GrassManager : MonoBehaviour
 
     // const int res = 128;
     // const float chunck_size = 10f;
-    const int res = 128 * 4;
-    const float chunck_size = 10f * 4;
+    const int res = 32;
+    const float chunck_size = 1f;
 
+    const int nChunksX = 20;
+    const int nChunksZ = 20;
 
+    Vector3 terrainOrigin = new Vector3(-chunck_size/2f, 0f, -chunck_size/2f);
     const float step = chunck_size / res;
     ComputeBuffer grass_buffer;
     int bladeCount = -1;
@@ -33,33 +36,32 @@ public class GrassManager : MonoBehaviour
 
     void Init()
     {
-        print("Initialize grass!");
-
         mesh = CreateMesh();
 
-        // grass_buffer = new ComputeBuffer(res*res, (4*3 + 4*4) );
-        grass_buffer = new ComputeBuffer(res*res, (4*3) );
-
-        // GrassBlade[] blades = new GrassBlade[res*res];
         var blades = new List<GrassBlade>();
+        Bounds bounds = new Bounds(terrainOrigin, Vector3.zero);
 
-        // TODO: use raycast to find position and normal of grass blade and use texture mask to find if grass is needed
         LayerMask defaultMask = LayerMask.NameToLayer("Default");
         RaycastHit hit;
 
-        for (int z = 0 ; z < res ; ++z) {
+        for (int ichunkx = 0 ; ichunkx < nChunksX ; ++ichunkx) {
+        for (int ichunkz = 0 ; ichunkz < nChunksZ ; ++ichunkz) {
+
+            for (int z = 0 ; z < res ; ++z) {
             for (int x = 0 ; x < res ; ++x) {
-                int i = z * res + x;
+                // int i = z * res + x;
 
+                Vector3 chunkOffset = new Vector3(
+                    ichunkx * chunck_size,
+                    0f,
+                    ichunkz * chunck_size
+                );
                 Vector3 pos = new Vector3((float)x * step, 0f, (float)z * step);
+                pos += chunkOffset + terrainOrigin;
 
-                bool didHit = Physics.Raycast(pos + new Vector3(0f, 5f, 0f), Vector3.down, out hit, Mathf.Infinity);
-
-                // Debug.DrawRay(pos + new Vector3(0f, 5f, 0f), Vector3.down * 20f, Color.green, 100f);
+                bool didHit = Physics.Raycast(pos + new Vector3(0f, 20f, 0f), Vector3.down, out hit, Mathf.Infinity);
                 if (didHit == false)
                     continue;
-
-                print("HIT !!!");
 
                 GrassBlade blade;
                 blade.position = pos;
@@ -73,15 +75,21 @@ public class GrassManager : MonoBehaviour
                 blade.position.z += offset.y;
 
                 blades.Add(blade);
+
+                bounds.Encapsulate(pos); // extend bounds to include point
                 // blades[i].rot = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
             }
+            }
+        }
         }
 
-        print(blades.Count);
-        // grass_buffer.SetData(blades);
         bladeCount = blades.Count;
-        grass_buffer.SetData(blades, 0, 0, blades.Count);
+
+        grass_buffer = new ComputeBuffer(bladeCount, (4*3) );
+        grass_buffer.SetData(blades, 0, 0, bladeCount);
         material.SetBuffer("_grass", grass_buffer);
+
+        // mesh.bounds = bounds; // PROBLEM: bounds change the mesh position when rendering
     }
 
     Mesh CreateMesh()
