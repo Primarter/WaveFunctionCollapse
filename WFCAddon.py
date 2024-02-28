@@ -195,14 +195,16 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
     '''Compute setup data to transfer to Unity'''
     bl_idname = "wfc.compute_data_operator"
     bl_label = "Compute WFC Data"
-    prototypes = []
+    prototypes: List[Prototype] = []
+
 
     def execute(self, context):
-        file = open(LOG_PATH, 'w')
+        file = open(LOG_PATH, 'w') if context.scene.WFC_log_data else None
+        def log_message(message):
+            if (context.scene.WFC_log_data):
+                file.write(message)
 
-        file.write('### DEBUG ###\n\n')
-
-        print('#############\n### DEBUG ###\n#############\n')
+        log_message('#############\n### DEBUG ###\n#############\n\n')
 
         objects = context.scene.WFC_prototypes_collection.all_objects
 
@@ -217,8 +219,7 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
 
         for obj in objects:
 
-            file.write(obj.name + '\n')
-            print(obj.name)
+            log_message(obj.name + '\n')
 
             points = [v.co.to_tuple(5) for v in obj.data.vertices]
             normals = [v.normal.to_tuple(5) for v in obj.data.vertices]
@@ -259,14 +260,14 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
             for i, fpg in enumerate(face_profiles_geometry):
                 if len(fpg) == 0:
                     obj_face_profiles[i] = FaceProfile(-1, True)
-                    # file.write('Identified empty horizontal face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
+                    log_message('Identified empty horizontal face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
                     continue
                 fpg_ori = get_orientation(fpg)
                 fpg = [(x, y) for (x, y, nx, ny) in fpg] # discarding normals as we now have orientation
                 for (kfp, ori, ofp) in known_face_profiles:
                     if (Counter(kfp) == Counter(fpg) and ori == fpg_ori):
                         obj_face_profiles[i] = ofp
-                        # file.write('Identified horizontal face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
+                        log_message('Identified horizontal face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
                         break
                 else:
                     flipped_fpg = [(-x, y) for (x, y) in fpg]
@@ -275,15 +276,15 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
                         known_face_profiles.append((fpg, fpg_ori, ofp))
                         known_face_profiles.append((flipped_fpg, fpg_ori, ofp))
                         obj_face_profiles[i] = ofp
-                        file.write('new profile found: ' + str(ofp) + ' ' + str(fpg_ori) + '\n')
+                        log_message('new profile found: ' + str(ofp) + ' ' + str(fpg_ori) + '\n')
                     else:
                         ofp = FaceProfile(profile_id, False, True, False)
                         known_face_profiles.append((fpg, fpg_ori, ofp))
                         obj_face_profiles[i] = ofp
-                        file.write('new profile found: ' + str(ofp) + ' ' + str(fpg_ori) + '\n')
+                        log_message('new profile found: ' + str(ofp) + ' ' + str(fpg_ori) + '\n')
                         ofp = FaceProfile(profile_id, False, True, True)
                         known_face_profiles.append((flipped_fpg, flip_orientation(fpg_ori), ofp))
-                        file.write('new profile found: ' + str(ofp) + ' ' + str(flip_orientation(fpg_ori)) + '\n')
+                        log_message('new profile found: ' + str(ofp) + ' ' + str(flip_orientation(fpg_ori)) + '\n')
                     profile_id += 1
 
             # Create/Associate vertical face profiles
@@ -291,14 +292,14 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
                 i += 4
                 if len(fpg) == 0:
                     obj_face_profiles[i] = FaceProfile(-1, True)
-                    # file.write('Identified empty vertical face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
+                    log_message('Identified empty vertical face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
                     continue
                 fpg_ori = get_orientation(fpg)
                 fpg = [(x, y) for (x, y, nx, ny) in fpg] # discarding normals as we now have orientation
                 for (kfp, ori, ofp) in known_vertical_face_profiles:
                     if (Counter(kfp) == Counter(fpg) and ori == fpg_ori):
                         obj_face_profiles[i] = ofp
-                        # file.write('Identified vertical face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
+                        log_message('Identified vertical face profile at ' + str(i) + ': ' + str(obj_face_profiles[i]) + '\n')
                         break
                 else:
                     rot_1, rot_1_ori = ([(-x, y) for (x, y) in fpg], rot_orientation(fpg_ori, 2))
@@ -309,20 +310,20 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
                         ofp = FaceProfile(profile_id, True, False)
                         known_vertical_face_profiles.append((fpg, Orientation.NONE, ofp))
                         obj_face_profiles[i] = ofp
-                        file.write('new profile found: ' + str(ofp) + '\n')
+                        log_message('new profile found: ' + str(ofp) + '\n')
                     else:
                         ofp = FaceProfile(profile_id, True, True, 0)
                         obj_face_profiles[i] = ofp
-                        file.write('new profiles found: ' + str(ofp) + ', 1, 2, 3\n')
+                        log_message('new profiles found: ' + str(ofp) + ', 1, 2, 3\n')
                         known_vertical_face_profiles.append((fpg, fpg_ori, ofp))
                         known_vertical_face_profiles.append((rot_1, rot_1_ori, FaceProfile(profile_id, True, True, 1)))
                         known_vertical_face_profiles.append((rot_2, rot_2_ori, FaceProfile(profile_id, True, True, 2)))
                         known_vertical_face_profiles.append((rot_3, rot_3_ori, FaceProfile(profile_id, True, True, 3)))
                     profile_id += 1
-            file.write('\n')
+            log_message('\n')
             hfp = obj_face_profiles[:4]
             vfp = obj_face_profiles[4:]
-            # file.write('Face profiles: ' + str([str(fp) for fp in obj_face_profiles]) + '\n')
+            log_message('Face profiles: ' + str([str(fp) for fp in obj_face_profiles]) + '\n')
             weight: float = obj.get("Weight", 1.0)
             obj["Weight"] = float(weight)
             proto = Prototype(obj.name, weight, tuple(obj_face_profiles), 0)
@@ -331,6 +332,11 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
         for proto in prototypes:
             proto.get_potential_neighbours(prototypes)
         WFC_OT_compute_data_operator.prototypes = prototypes
+        for p in prototypes:
+            p.face_profiles = tuple(fp.__dict__ for fp in p.face_profiles)
+        data = [p.__dict__ for p in prototypes]
+        context.scene.WFC_prototypes_collection["prototypes"] = data
+        log.info("Computed data")
         return {'FINISHED'}
 
     def debug_data(self):
@@ -354,6 +360,7 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
                 file.write(str(fp) + '\n')
                 # file.write(str(fp.potential_neighbours) + '\n')
             file.write('\n')
+        log.info("Dumped debug data to log.txt")
 
     def create_json(self):
         prototypes = WFC_OT_compute_data_operator.prototypes
@@ -363,13 +370,14 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
             data = [p.__dict__ for p in prototypes]
             data_wrapper = {"data": data}
             json.dump(data_wrapper, json_file, indent=2)
+        log.info("Wrote JSON data to data.json")
 
 '''
 Rotation is made through swizzling the sides
 '''
 
 class WFC_OT_dump_data(bpy.types.Operator):
-    '''Dump data to text file'''
+    '''Dump data to a text file (useful to debug)'''
     bl_idname = "wfc.dump_data"
     bl_label = "Dump WFC data to text file"
 
@@ -394,6 +402,7 @@ class WFC_OT_dump_data(bpy.types.Operator):
                 file.write(str(fp) + '\n')
                 # file.write(str(fp.potential_neighbours) + '\n')
             file.write('\n')
+        log.info("Dumped debug data to log.txt")
         return {'FINISHED'}
 
 class WFC_OT_create_json(bpy.types.Operator):
@@ -409,6 +418,7 @@ class WFC_OT_create_json(bpy.types.Operator):
             data = [p.__dict__ for p in prototypes]
             data_wrapper = {"data": data}
             json.dump(data_wrapper, json_file, indent=2)
+        log.info("Wrote JSON data to data.json")
         return {'FINISHED'}
 
 class WFC_OT_clear_data(bpy.types.Operator):
@@ -453,21 +463,24 @@ class WFC_PT_wfc_panel(bpy.types.Panel):
         layout.prop(context.scene, "WFC_prototypes_collection", text="")
         layout.separator()
         col = layout.column()
-        col.label(text="Current Object:" )
         if (len(context.selected_objects) > 0 and context.selected_objects[0].get('Weight') is not None):
             col.label(text=context.selected_objects[0].name)
             col.prop(context.object, '["Weight"]')
         else:
+            enabled = len(context.selected_objects) > 0
+            col.label(text=context.selected_objects[0].name if enabled else "No object selected")
             col.operator(WFC_OT_create_weight.bl_idname, text="Create Weight prop")
-            col.enabled = len(context.selected_objects) > 0
+            col.enabled = enabled
         layout.separator()
+        layout.prop(context.scene, "WFC_log_data", text="Computing Log")
         layout.operator(WFC_OT_compute_data_operator.bl_idname, text="Compute Data")
         layout.operator(WFC_OT_dump_data.bl_idname, text="Dump Data")
         layout.operator(WFC_OT_create_json.bl_idname, text="Create JSON File")
         
 
 def register():
-    bpy.types.Scene.WFC_prototypes_collection = bpy.props.PointerProperty(type=bpy.types.Collection)
+    bpy.types.Scene.WFC_prototypes_collection = bpy.props.PointerProperty(type=bpy.types.Collection, name="Collection to setup")
+    bpy.types.Scene.WFC_log_data = bpy.props.BoolProperty(name="Log Data", description="Are computing logs going to a file?", default=False)
     bpy.utils.register_class(WFC_OT_create_weight)
     bpy.utils.register_class(WFC_OT_compute_data_operator)
     bpy.utils.register_class(WFC_OT_dump_data)
