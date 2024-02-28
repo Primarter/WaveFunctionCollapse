@@ -9,6 +9,7 @@ from typing import List, Tuple, Dict
 from collections import Counter
 from math import atan2, pi
 from enum import Enum
+import logging
 # from functools import partial
 
 bl_info = {
@@ -23,9 +24,11 @@ bl_info = {
     "category": "Setup WFC",
 }
 
-LOG_PATH = Path('./log.txt')
-DUMP_DATA_PATH = Path('./dump.txt')
-JSON_DATA_PATH = Path('./data.json')
+LOG_PATH = bpy.path.abspath('//log.txt')
+DUMP_DATA_PATH = bpy.path.abspath('//dump.txt')
+JSON_DATA_PATH = bpy.path.abspath('//data.json')
+
+log = logging.getLogger(__name__)
 
 # Tuple indices for neighbour association
 PX = 0 # LEFT
@@ -189,6 +192,7 @@ def rot_orientation(ori: Orientation, rot_factor: int):
     return ori
 
 class WFC_OT_compute_data_operator(bpy.types.Operator):
+    '''Compute setup data to transfer to Unity'''
     bl_idname = "wfc.compute_data_operator"
     bl_label = "Compute WFC Data"
     prototypes = []
@@ -326,13 +330,13 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
 
         for proto in prototypes:
             proto.get_potential_neighbours(prototypes)
-        self.prototypes = prototypes
+        WFC_OT_compute_data_operator.prototypes = prototypes
         return {'FINISHED'}
 
     def debug_data(self):
         prototypes = WFC_OT_compute_data_operator.prototypes
         file = open(DUMP_DATA_PATH, 'a')
-        file.write('\n### DATA ###\n\n')
+        file.write('### DATA ###\n\n')
 
         # for fp, ori, ofp in known_face_profiles:
         #     file.write(str(fp) + ' ' + str(ori) + ' ' + str(ofp) + '\n')
@@ -365,6 +369,7 @@ Rotation is made through swizzling the sides
 '''
 
 class WFC_OT_dump_data(bpy.types.Operator):
+    '''Dump data to text file'''
     bl_idname = "wfc.dump_data"
     bl_label = "Dump WFC data to text file"
 
@@ -392,6 +397,7 @@ class WFC_OT_dump_data(bpy.types.Operator):
         return {'FINISHED'}
 
 class WFC_OT_create_json(bpy.types.Operator):
+    '''Dump data to a JSON file for transfer to Unity'''
     bl_idname = "wfc.create_json"
     bl_label = "Dump WFC data to JSON file"
 
@@ -406,6 +412,7 @@ class WFC_OT_create_json(bpy.types.Operator):
         return {'FINISHED'}
 
 class WFC_OT_clear_data(bpy.types.Operator):
+    '''Clear setup data'''
     bl_idname = "wfc.clear_data"
     bl_label = "Clear WFC data"
 
@@ -413,7 +420,17 @@ class WFC_OT_clear_data(bpy.types.Operator):
         print(context.scene.WFC_prototypes_collection)
         return {'FINISHED'}
 
+class WFC_OT_create_weight(bpy.types.Operator):
+    '''Create custom property Weight on current object'''
+    bl_idname = "wfc.create_weight"
+    bl_label = "Create Weight"
+
+    def execute(self, context):
+        context.object['Weight'] = float(1.0)
+        return {'FINISHED'}
+
 class WFC_OT_print_operator(bpy.types.Operator):
+    '''Print selected collection'''
     bl_idname = "wfc.print_operator"
     bl_label = "Minimal Operator"
 
@@ -435,7 +452,15 @@ class WFC_PT_wfc_panel(bpy.types.Panel):
         layout.label(text="Collection to setup:")
         layout.prop(context.scene, "WFC_prototypes_collection", text="")
         layout.separator()
-        layout.operator(WFC_OT_print_operator.bl_idname, text="Print Chosen Collection")
+        col = layout.column()
+        col.label(text="Current Object:" )
+        if (len(context.selected_objects) > 0 and context.selected_objects[0].get('Weight') is not None):
+            col.label(text=context.selected_objects[0].name)
+            col.prop(context.object, '["Weight"]')
+        else:
+            col.operator(WFC_OT_create_weight.bl_idname, text="Create Weight prop")
+            col.enabled = len(context.selected_objects) > 0
+        layout.separator()
         layout.operator(WFC_OT_compute_data_operator.bl_idname, text="Compute Data")
         layout.operator(WFC_OT_dump_data.bl_idname, text="Dump Data")
         layout.operator(WFC_OT_create_json.bl_idname, text="Create JSON File")
@@ -443,7 +468,7 @@ class WFC_PT_wfc_panel(bpy.types.Panel):
 
 def register():
     bpy.types.Scene.WFC_prototypes_collection = bpy.props.PointerProperty(type=bpy.types.Collection)
-    bpy.utils.register_class(WFC_OT_print_operator)
+    bpy.utils.register_class(WFC_OT_create_weight)
     bpy.utils.register_class(WFC_OT_compute_data_operator)
     bpy.utils.register_class(WFC_OT_dump_data)
     bpy.utils.register_class(WFC_OT_create_json)
@@ -455,7 +480,7 @@ def unregister():
     bpy.utils.unregister_class(WFC_OT_create_json)
     bpy.utils.unregister_class(WFC_OT_dump_data)
     bpy.utils.unregister_class(WFC_OT_compute_data_operator)
-    bpy.utils.unregister_class(WFC_OT_print_operator)
+    bpy.utils.unregister_class(WFC_OT_create_weight)
     del bpy.types.Scene.WFC_prototypes_collection
 
 
@@ -466,5 +491,6 @@ if __name__ == "__main__":
 # Check if it works, hopefully it does
 # add purging data button and data status
 # add buttons for dumping etc
+# add weight setup button
 # switch back to static variables for prototypes to be able to dump
 # display custom data Weight in panel?
