@@ -6,5 +6,12 @@ class WFC_OT_clear_data(bpy.types.Operator):
     bl_label = "Clear WFC data"
 
     def execute(self, context):
-        print(context.scene.WFC_prototypes_collection)
+        print(context.scene.wfc_prototypes_collection)
         return {'FINISHED'}
+
+
+def register():
+    bpy.utils.register_class(WFC_OT_clear_data)
+
+def unregister():
+    bpy.utils.unregister_class(WFC_OT_clear_data)

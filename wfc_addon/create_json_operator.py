@@ -1,8 +1,9 @@
 import bpy
 import logging
 import json
-from compute_data_operator import WFC_OT_compute_data_operator
-from wfc_utils import JSON_DATA_PATH
+
+from .compute_data_operator import WFC_OT_compute_data_operator
+from .preferences import get_preferences
 
 log = logging.getLogger("wfc_addon.dump_data_operator")
 
@@ -13,7 +14,7 @@ class WFC_OT_create_json(bpy.types.Operator):
 
     def execute(self, context):
         prototypes = WFC_OT_compute_data_operator.prototypes
-        with open(JSON_DATA_PATH, "w") as json_file:
+        with open(bpy.path.abspath(get_preferences(context).wfc_json_filepath), "w") as json_file:
             for p in prototypes:
                 p.face_profiles = tuple(fp.__dict__ for fp in p.face_profiles)
             data = [p.__dict__ for p in prototypes]

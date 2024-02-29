@@ -2,12 +2,7 @@ from __future__ import annotations
 from copy import deepcopy
 from typing import List, Tuple
 from math import atan2, pi
-from enum import Enum
-import bpy
-
-LOG_PATH = bpy.path.abspath('//log.txt')
-DUMP_DATA_PATH = bpy.path.abspath('//dump.txt')
-JSON_DATA_PATH = bpy.path.abspath('//data.json')
+from enum import IntEnum
 
 # Tuple indices for neighbour association
 PX = 0 # LEFT
@@ -16,6 +11,14 @@ NX = 2 # RIGHT
 NY = 3 # FORWARD
 NZ = 4 # DOWN
 PZ = 5 # UP
+
+class NeighbourTupleIndices(IntEnum):
+    PX = 0 # LEFT
+    PY = 1 # BACKWARDS
+    NX = 2 # RIGHT
+    NY = 3 # FORWARD
+    NZ = 4 # DOWN
+    PZ = 5 # UP
 
 def rotate_list(l: List, n: int):
     return l[n:] + l[:n]
@@ -108,7 +111,7 @@ class Prototype:
 # this setup allows for a shortcut: add the stored rotation value to the placed block's rotation
 # and use that as the to-be-placed block's rotation
 
-class Orientation(Enum):
+class Orientation(IntEnum):
     EAST = 0
     NORTHEAST = 1
     NORTH = 2

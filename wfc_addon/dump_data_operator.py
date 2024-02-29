@@ -1,7 +1,8 @@
 import bpy
 import logging
-from compute_data_operator import WFC_OT_compute_data_operator
-from wfc_utils import DUMP_DATA_PATH
+
+from .compute_data_operator import WFC_OT_compute_data_operator
+from .preferences import get_preferences
 
 log = logging.getLogger("wfc_addon.dump_data_operator")
 
@@ -12,7 +13,7 @@ class WFC_OT_dump_data(bpy.types.Operator):
 
     def execute(self, context):
         prototypes = WFC_OT_compute_data_operator.prototypes
-        file = open(DUMP_DATA_PATH, 'a')
+        file = open(bpy.path.abspath(get_preferences(context).wfc_dump_filepath), 'a')
         file.write('\n### DATA ###\n\n')
 
         # for fp, ori, ofp in known_face_profiles:

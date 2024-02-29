@@ -1,11 +1,23 @@
 from __future__ import annotations
+
 import bpy
+import logging
+
 from mathutils import Vector
-import json
 from typing import List, Tuple
 from collections import Counter
-from wfc_utils import *
-import logging
+from datetime import datetime
+
+from .wfc_utils import (
+    Prototype,
+    FaceProfile,
+    Orientation,
+    NeighbourTupleIndices as Nb,
+    get_orientation,
+    flip_orientation,
+    rot_orientation
+)
+from .preferences import get_preferences
 
 log = logging.getLogger("wfc_addon.compute_data_operator")
 
@@ -17,14 +29,15 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
 
 
     def execute(self, context):
-        file = open(LOG_PATH, 'w') if context.scene.WFC_log_data else None
+        file = open(bpy.path.abspath(get_preferences(context).wfc_log_filepath), 'w') if context.scene.wfc_log_data else None
         def log_message(message):
-            if (context.scene.WFC_log_data):
+            if (context.scene.wfc_log_data):
                 file.write(message)
 
-        log_message('#############\n### DEBUG ###\n#############\n\n')
+        log_message('#############\n### DEBUG ###\n#############\n')
+        log_message(datetime.now().strftime("%d/%m/%Y %H:%M:%S\n\n"))
 
-        objects = context.scene.WFC_prototypes_collection.all_objects
+        objects = context.scene.wfc_prototypes_collection.all_objects
 
         known_face_profiles: List[Tuple[List[Tuple], Orientation, str]] = [([], Orientation.NONE, '-1')]
         known_vertical_face_profiles: List[Tuple[List[Tuple], Orientation, str]] = [([], Orientation.NONE, '-1')]
@@ -52,19 +65,19 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
                 if (p[0] == -1): # nx
                     projNormals = Vector((-n[1], n[2], 0)).normalized()[:2]
                     point_2d_proj = (-p[1], p[2], *projNormals)
-                    face_profiles_geometry[NX].append(point_2d_proj)
+                    face_profiles_geometry[Nb.NX].append(point_2d_proj)
                 if (p[0] == +1): # px
                     projNormals = Vector((n[1], n[2], 0)).normalized()[:2]
                     point_2d_proj = (p[1], p[2], *projNormals)
-                    face_profiles_geometry[PX].append(point_2d_proj)
+                    face_profiles_geometry[Nb.PX].append(point_2d_proj)
                 if (p[1] == -1): # ny
                     projNormals = Vector((n[0], n[2], 0)).normalized()[:2]
                     point_2d_proj = (p[0], p[2], *projNormals)
-                    face_profiles_geometry[NY].append(point_2d_proj)
+                    face_profiles_geometry[Nb.NY].append(point_2d_proj)
                 if (p[1] == +1): # py
                     projNormals = Vector((-n[0], n[2], 0)).normalized()[:2]
                     point_2d_proj = (-p[0], p[2], *projNormals)
-                    face_profiles_geometry[PY].append(point_2d_proj)
+                    face_profiles_geometry[Nb.PY].append(point_2d_proj)
                 if (p[2] == -1): # nz
                     projNormals = Vector((n[0], -n[1], 0)).normalized()[:2]
                     point_2d_proj = (p[0], -p[1], *projNormals)
@@ -153,39 +166,6 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
         for p in prototypes:
             p.face_profiles = tuple(fp.__dict__ for fp in p.face_profiles)
         data = [p.__dict__ for p in prototypes]
-        context.scene.WFC_prototypes_collection["prototypes"] = data
+        context.scene.wfc_prototypes_collection["prototypes"] = data
         log.info("Computed data")
         return {'FINISHED'}
-
-    def debug_data(self):
-        prototypes = WFC_OT_compute_data_operator.prototypes
-        file = open(DUMP_DATA_PATH, 'a')
-        file.write('### DATA ###\n\n')
-
-        # for fp, ori, ofp in known_face_profiles:
-        #     file.write(str(fp) + ' ' + str(ori) + ' ' + str(ofp) + '\n')
-
-        # file.write('\n')
-
-        # for fp, ori, ofp in known_vertical_face_profiles:
-        #     file.write(str(fp) + ' ' + str(ori) + ' ' + str(ofp) + '\n')
-
-        # file.write('\n')
-
-        for proto in prototypes:
-            file.write(proto.name + ' ' + str(proto.id) + '\n')
-            for fp in proto.face_profiles:
-                file.write(str(fp) + '\n')
-                # file.write(str(fp.potential_neighbours) + '\n')
-            file.write('\n')
-        log.info("Dumped debug data to log.txt")
-
-    def create_json(self):
-        prototypes = WFC_OT_compute_data_operator.prototypes
-        with open(JSON_DATA_PATH, "w") as json_file:
-            for p in prototypes:
-                p.face_profiles = tuple(fp.__dict__ for fp in p.face_profiles)
-            data = [p.__dict__ for p in prototypes]
-            data_wrapper = {"data": data}
-            json.dump(data_wrapper, json_file, indent=2)
-        log.info("Wrote JSON data to data.json")
