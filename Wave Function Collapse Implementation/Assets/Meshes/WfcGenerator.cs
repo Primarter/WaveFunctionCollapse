@@ -120,8 +120,6 @@ public class WfcGenerator : MonoBehaviour
         else
             minEntropyPoints.Add(mapSize/2);
 
-        Debug.Log((uncollapsedCellsCount, mapSize.x * mapSize.y * mapSize.z));
-
         return true;
     }
 
@@ -134,12 +132,6 @@ public class WfcGenerator : MonoBehaviour
         endRules.Invoke();
 
         minEntropy = maxEntropy;
-        for (int x = 0; x < mapSize.x; x++)
-            for (int y = 0; y < mapSize.y; y++)
-                for (int z = 0; z < mapSize.z; z++)
-                    if (terrainGrid[x,y,z].possibilites.Count > 0) {
-                        Debug.Log(terrainGrid[x,y,z].possibilites.Count);
-                    }
     }
 
     private void CollapseStep() {
@@ -250,13 +242,12 @@ public class WfcGenerator : MonoBehaviour
 
         // Propagating through each direction
         foreach ((Vector3Int otherCoords, int dirIdx) in validNbCoords) { // dirIdx == direction's face profile's idx
-
             // Creating potential neighbour list for direction by compiling potential neighbours or each possibility
             List<Prototype> possibleNeighbours = new List<Prototype>();
             foreach (Prototype proto in current.possibilites) {
                 int[] potNeighIdces = proto.face_profiles[dirIdx].potential_neighbours;
-                foreach (int nb in potNeighIdces) {
-                    possibleNeighbours.Add(prototypes[nb]);
+                foreach (int id in potNeighIdces) {
+                    possibleNeighbours.Add(prototypes[id]);
                     // possibleNeighbours.Add(Array.Find(prototypes, (proto) => proto.id == nb));
                 }
             }
