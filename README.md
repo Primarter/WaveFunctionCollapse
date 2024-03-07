@@ -39,7 +39,7 @@ This is basically how you solve a sudoku but with different rules of adjacency a
 Making the building blocks is rather simple: as long as you pick some form of unit for your blocks, you can stick to that unit and align the blocks fairly easily.
 The annoying part is creating the adjacency rules. You need to go through each block and determine which other blocks fit next to them. When drawing pixels, this isn't too big a problem; but when in 3D, there are 6 neighbours that can each be rotated. Manually assigning them would take quite some time and would make iterating rather tedious. I needed to simplify that situation so I could automate the process.
 
-Since it is completely free and open-source, I chose Blender to make the building blocks in 3D and automate the creation of the adjacency data. The robust Blender API and its great community were instrumental in getting this addon to work.
+Since it is completely free and open-source, I chose Blender to make the building blocks in 3D and automate the creation of the adjacency data. The robust Blender API and its great community were instrumental in getting this addon to work. Thanks especially to [Valy Arhal's](https://github.com/Valery-AA) help and [the references she gave me](https://github.com/Valery-AA/AlxOverHaul).
 
 First, the models must fit within a unit cube, with their edges on the faces of said cube. This allows me to create face profiles for each side of the cube. If two face profiles match, they can fit together.  
 Then, I constrained the rotation of the blocks. They only rotate around the vertical axis. Therefore, there are only 4 rotations possible for a unit cube.  
