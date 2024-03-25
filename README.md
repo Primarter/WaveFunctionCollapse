@@ -1,5 +1,7 @@
 # Wave Function Collapse Implementation using Unity and Blender
 
+![Wave Function Collapse splash](./images/WFC-splash.png)
+
 This project was first created as part of my university curriculum. We had the opportunity to explore a technology we chose.
 I came across [Maxim Gumin's Wave Function Collapse](https://github.com/mxgmn/WaveFunctionCollapse) implementation a while before and it really caught my attention.
 I figured I would try to implement something similar to what he did.
