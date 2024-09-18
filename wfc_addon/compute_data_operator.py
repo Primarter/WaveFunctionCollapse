@@ -163,9 +163,10 @@ class WFC_OT_compute_data_operator(bpy.types.Operator):
         for proto in prototypes:
             proto.get_potential_neighbours(prototypes)
         WFC_OT_compute_data_operator.prototypes = prototypes
+        context.scene.wfc_prototypes_collection["prototypes"] = data
         for p in prototypes:
             p.face_profiles = tuple(fp.__dict__ for fp in p.face_profiles)
         data = [p.__dict__ for p in prototypes]
-        context.scene.wfc_prototypes_collection["prototypes"] = data
+        context.scene.wfc_prototypes_collection["serialised_prototypes"] = data
         log.info("Computed data")
         return {'FINISHED'}
